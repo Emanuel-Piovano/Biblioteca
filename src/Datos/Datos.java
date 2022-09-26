@@ -85,39 +85,6 @@ public class Datos {
         }
     }
     
-    /*
-    public void Buscar(DefaultTableModel model, String idBuscar){
-        model.setRowCount(0);
-        ResultSet result = null;
-        
-        try {
-            System.out.println("idBuscar: " + idBuscar);
-            PreparedStatement st = connect.prepareStatement("SELECT * FROM Lectores WHERE ID = " + idBuscar);
-            result = st.executeQuery();
-            
-            while (result.next()) {                
-                model.addRow(
-                        new Object[]{
-                            result.getInt("ID"),
-                            result.getString("Nombre"),
-                            result.getString("Apellido"), 
-                            result.getString("DNI"), 
-                            result.getString("FechaNacimiento"), 
-                            result.getString("Direccion"), 
-                            result.getInt("Localidad"), 
-                            result.getInt("Provincia"), 
-                            result.getString("Telefono"), 
-                            result.getBoolean("Socio"), 
-                            result.getFloat("Deuda")
-                        }
-                );
-            }
-        } catch (Exception x) {
-            JOptionPane.showMessageDialog(null, x.getMessage().toString());
-        }
-    }
-    */
-    
     public void Buscar(DefaultTableModel model, String idBuscar){
         model.setRowCount(0);
         ResultSet result = null;

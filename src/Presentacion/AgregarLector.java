@@ -112,7 +112,7 @@ public class AgregarLector extends javax.swing.JFrame {
 
         jLabel12.setText("ID");
 
-        textId.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        textId.setEditable(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -160,12 +160,12 @@ public class AgregarLector extends javax.swing.JFrame {
                     .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(textLocalidad)
+                    .addComponent(textLocalidad, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
                     .addComponent(textTelefono)
                     .addComponent(textDeuda)
                     .addComponent(textDireccion)
                     .addComponent(textProvincia)
-                    .addComponent(textId, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE))
+                    .addComponent(textId))
                 .addGap(120, 120, 120))
         );
         layout.setVerticalGroup(
@@ -221,15 +221,12 @@ public class AgregarLector extends javax.swing.JFrame {
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
         // TODO add your handling code here:
         //Al oprimir el botón "Salir", nos regresa a la ventana "Lectores"
-        Lectores obj = new Lectores();
-        obj.setVisible(true);
-        dispose();                                                              //Cierra la ventana AgregarLector para que quede como única ventana activa la de Lectores
+        dispose();
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         Lector nuevo = new Lector();
-        //Datos dt = new Datos();
         
         nuevo.setNombre(textNombre.getText());
         nuevo.setApellido(textApellido.getText());
@@ -269,18 +266,10 @@ public class AgregarLector extends javax.swing.JFrame {
             nuevo.setId(Integer.parseInt(textId.getText()));
             nuevo.Modificar();
         }
-        //dt.Agregar();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         // TODO add your handling code here:
-        /*
-        Lector nuevo = new Lector();
-        
-        if(nuevo.isEstado()==true){
-            System.out.println("Modificar lector");
-        }
-        */
     }//GEN-LAST:event_formWindowActivated
     
     public void Cargar(int idModificar, String nombreModificar, String apellidoModificar, String dniModificar, String fechaNacimientoModificar, String direccionModificar, int localidadModificar, int provinciaModificar, String telefonoModificar, Boolean socioModificar, float deudaModificar, Boolean estado ){

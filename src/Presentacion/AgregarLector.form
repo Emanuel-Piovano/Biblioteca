@@ -81,12 +81,12 @@
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="textLocalidad" max="32767" attributes="0"/>
+                  <Component id="textLocalidad" pref="135" max="32767" attributes="0"/>
                   <Component id="textTelefono" max="32767" attributes="0"/>
                   <Component id="textDeuda" max="32767" attributes="0"/>
                   <Component id="textDireccion" alignment="0" max="32767" attributes="0"/>
                   <Component id="textProvincia" max="32767" attributes="0"/>
-                  <Component id="textId" pref="135" max="32767" attributes="0"/>
+                  <Component id="textId" max="32767" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="120" max="-2" attributes="0"/>
           </Group>
@@ -272,11 +272,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="textId">
       <Properties>
-        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-          <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-            <TitledBorder/>
-          </Border>
-        </Property>
+        <Property name="editable" type="boolean" value="false"/>
       </Properties>
     </Component>
   </SubComponents>

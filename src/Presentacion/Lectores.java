@@ -44,7 +44,6 @@ public class Lectores extends javax.swing.JFrame {
     private void initComponents() {
 
         jButton2 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
@@ -65,13 +64,6 @@ public class Lectores extends javax.swing.JFrame {
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
-            }
-        });
-
-        jButton4.setText("Cerrar");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
             }
         });
 
@@ -140,8 +132,6 @@ public class Lectores extends javax.swing.JFrame {
                         .addComponent(jButton2)
                         .addGap(18, 18, 18)
                         .addComponent(jButton3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -160,7 +150,6 @@ public class Lectores extends javax.swing.JFrame {
                 .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2)
-                    .addComponent(jButton4)
                     .addComponent(jButton3)
                     .addComponent(jButton6)
                     .addComponent(jButton1))
@@ -191,34 +180,10 @@ public class Lectores extends javax.swing.JFrame {
         dt.Refrescar(model);                                //Se llama al método Refrescar del objeto dt de la clase Datos
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-        /*
-        try {
-            connect.close();
-            
-        } catch (Exception x) {
-            JOptionPane.showMessageDialog(null, x.getMessage().toString());
-        }
-        */
-    }//GEN-LAST:event_jButton4ActionPerformed
-
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
         Datos dt = new Datos();                                                 //Se crea el objecto dt en la clase Datos   
         dt.Conectar(url);                                                       //Se llama al método Conectar perteneciente al objeto dt de la clase Datos
-        /*
-        try {
-            Class.forName("org.sqlite.JDBC");
-            connect = DriverManager.getConnection(url);
-            
-            if(connect != null){
-                JOptionPane.showMessageDialog(null, "Conectado");
-            }
-        } catch (Exception x) {
-            JOptionPane.showMessageDialog(null, x.getMessage().toString());
-        }
-        */
     }//GEN-LAST:event_formWindowOpened
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -226,7 +191,6 @@ public class Lectores extends javax.swing.JFrame {
         //Al oprimir el botón "Agregar", nos dirige a la ventana "AgregarLector"
         AgregarLector obj = new AgregarLector();
         obj.setVisible(true);
-        //direccion = true;
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -259,16 +223,15 @@ public class Lectores extends javax.swing.JFrame {
         // TODO add your handling code here:
         //Al oprimir el botón "Modificar", nos dirige a la ventana "AgregarLector"
         AgregarLector obj = new AgregarLector();
-        Lector nuevo = new Lector();
         
         int filaSeleccionada = jTable1.getSelectedRow();
         
         if(filaSeleccionada >= 0){
             int idModificar = Integer.parseInt(jTable1.getValueAt(filaSeleccionada, 0).toString());
             //nuevo.setId(Integer.parseInt(idModificar));
-            nuevo.setId(idModificar);
+            //nuevo.setId(idModificar);
             String nombreModificar = jTable1.getValueAt(filaSeleccionada, 1).toString();
-            nuevo.setNombre(nombreModificar);
+            //nuevo.setNombre(nombreModificar);
             String apellidoModificar = jTable1.getValueAt(filaSeleccionada, 2).toString();
             String dniModificar = jTable1.getValueAt(filaSeleccionada, 3).toString();
             String fechaNacimientoModificar = jTable1.getValueAt(filaSeleccionada, 4).toString();
@@ -295,7 +258,6 @@ public class Lectores extends javax.swing.JFrame {
             
             obj.setVisible(true);
             obj.Cargar(idModificar, nombreModificar, apellidoModificar, dniModificar, fechaNacimientoModificar, direccionModificar, localidadModificar, provinciaModificar, telefonoModificar, socioModificar, deudaModificar, true);
-            //direccion = false;
         }
         else
         {
@@ -352,7 +314,6 @@ public class Lectores extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
