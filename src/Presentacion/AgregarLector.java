@@ -1,6 +1,5 @@
 package Presentacion;
 
-import Datos.Datos;
 import Negocio.Lector;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -28,6 +27,7 @@ public class AgregarLector extends javax.swing.JFrame {
     private void initComponents() {
 
         botonesSiNo = new javax.swing.ButtonGroup();
+        calendarPanel1 = new com.github.lgooddatepicker.components.CalendarPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -105,8 +105,8 @@ public class AgregarLector extends javax.swing.JFrame {
             }
         });
 
-        jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel11.setText("Nuevo lector");
+        jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
 
         botonEstado.setText("Estado");
 
@@ -338,6 +338,7 @@ public class AgregarLector extends javax.swing.JFrame {
     private javax.swing.JRadioButton botonNo;
     private javax.swing.JRadioButton botonSi;
     private javax.swing.ButtonGroup botonesSiNo;
+    private com.github.lgooddatepicker.components.CalendarPanel calendarPanel1;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;

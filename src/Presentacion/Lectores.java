@@ -1,6 +1,5 @@
 package Presentacion;
 
-import Datos.Datos;
 import Negocio.Lector;
 import java.awt.Frame;
 import java.sql.Connection;
@@ -16,8 +15,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class Lectores extends javax.swing.JFrame {
-    //Atributos
-    //protected boolean direccion;
     
     /**
      * Creates new form Ventana
@@ -31,8 +28,6 @@ public class Lectores extends javax.swing.JFrame {
     }
     
     DefaultTableModel model;
-    String url = "jdbc:sqlite:D:/Documents/BaseDeDatos/Biblioteca.s3db";
-    //Connection connect;
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -176,42 +171,47 @@ public class Lectores extends javax.swing.JFrame {
     
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        Datos dt = new Datos();                             //Se crea el objeto dt correspondiente a la clase Datos
-        dt.Refrescar(model);                                //Se llama al método Refrescar del objeto dt de la clase Datos
+        Lector refrescar = new Lector();                    //Se crea el objeto refrescar correspondiente a la clase Lector
+        
+        refrescar.Refrescar(model);                         //Se llama al método Refrescar del objeto refrescar de la clase Lector
+        textId.setText("");                                 //Borra lo escrito en el buscador por Id
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        // TODO add your handling code here:
-        Datos dt = new Datos();                                                 //Se crea el objecto dt en la clase Datos   
-        dt.Conectar(url);                                                       //Se llama al método Conectar perteneciente al objeto dt de la clase Datos
+        // TODO add your handling code here: 
+        Lector refrescar = new Lector();                    //Se crea el objeto refrescar correspondiente a la clase Lector
+        
+        refrescar.Conectar();                               //Se llama al método Conectar perteneciente al objeto refrescar de la clase Lector
+        refrescar.Refrescar(model);                         //Se llama al método Refrescar del objeto refrescar de la clase Lector
     }//GEN-LAST:event_formWindowOpened
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         //Al oprimir el botón "Agregar", nos dirige a la ventana "AgregarLector"
         AgregarLector obj = new AgregarLector();
+        
         obj.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
         Menu obj = new Menu();
+        
         obj.setVisible(true);
         dispose();   
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        Datos dt = new Datos();
+        Lector eliminar = new Lector();
         
         int filaSeleccionada = jTable1.getSelectedRow();
         
         if(filaSeleccionada >= 0){
             String idEliminar = jTable1.getValueAt(filaSeleccionada, 0).toString();
             
-            //System.out.println("Id a eliminar:" + idEliminar);
             model.removeRow(filaSeleccionada);
-            dt.Eliminar(idEliminar);
+            eliminar.Eliminar(idEliminar);
         }
         else
         {
@@ -228,10 +228,7 @@ public class Lectores extends javax.swing.JFrame {
         
         if(filaSeleccionada >= 0){
             int idModificar = Integer.parseInt(jTable1.getValueAt(filaSeleccionada, 0).toString());
-            //nuevo.setId(Integer.parseInt(idModificar));
-            //nuevo.setId(idModificar);
             String nombreModificar = jTable1.getValueAt(filaSeleccionada, 1).toString();
-            //nuevo.setNombre(nombreModificar);
             String apellidoModificar = jTable1.getValueAt(filaSeleccionada, 2).toString();
             String dniModificar = jTable1.getValueAt(filaSeleccionada, 3).toString();
             String fechaNacimientoModificar = jTable1.getValueAt(filaSeleccionada, 4).toString();
@@ -268,10 +265,11 @@ public class Lectores extends javax.swing.JFrame {
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         // TODO add your handling code here:
-        Datos dt = new Datos();                             //Se crea el objeto dt correspondiente a la clase Datos
+        Lector buscar = new Lector();
+        //Datos dt = new Datos();                             //Se crea el objeto dt correspondiente a la clase Datos
         
         String idBuscar = textId.getText();
-        dt.Buscar(model, idBuscar);                                //Se llama al método Refrescar del objeto dt de la clase Datos
+        buscar.Buscar(model, idBuscar);                                //Se llama al método Refrescar del objeto dt de la clase Datos
     }//GEN-LAST:event_jButton7ActionPerformed
 
     /**

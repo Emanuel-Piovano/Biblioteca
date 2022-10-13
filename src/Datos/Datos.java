@@ -17,28 +17,28 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class Datos {
+    //Atributos
+    String baseDeDatos = "org.sqlite.JDBC";
+    String direccion = "jdbc:sqlite:D:/Documents/BaseDeDatos/Biblioteca.s3db";
+    
     public static Connection connect ;
     
-    public void Conectar(String url){
+    public void Conectar(){
         try{
-        Class.forName("org.sqlite.JDBC");
-        connect = DriverManager.getConnection(url);
-        
-        if(connect != null){                                                    //Muestra un mensaje que se conectó correctamente a la base de datos
-            JOptionPane.showMessageDialog(null, "Conectado");
-        }
+        Class.forName(baseDeDatos);
+        connect = DriverManager.getConnection(direccion);
         
         }catch(Exception x){
             JOptionPane.showMessageDialog(null, x.getMessage());
         }   
     }
     
-    public void Refrescar (DefaultTableModel model){
+    public void Refrescar (DefaultTableModel model, String refrescar){
         model.setRowCount(0);
         ResultSet result = null;
         
         try {
-            PreparedStatement st = connect.prepareStatement("SELECT * FROM Lectores");
+            PreparedStatement st = connect.prepareStatement(refrescar);
             result = st.executeQuery();
             
             while (result.next()) {                
@@ -74,9 +74,10 @@ public class Datos {
         }
     }
     
-    public void Eliminar(String idEliminar){
+    public void Eliminar(String eliminarLector){
         try {            
-            PreparedStatement st = connect.prepareStatement("DELETE FROM Lectores WHERE id = " + idEliminar);
+            //PreparedStatement st = connect.prepareStatement("DELETE FROM Lectores WHERE id = " + idEliminar);
+            PreparedStatement st = connect.prepareStatement(eliminarLector);
             st.execute();
             JOptionPane.showMessageDialog(null, "El registro ha sido eliminado correctamente.");
         } catch (Exception x) {
@@ -85,13 +86,13 @@ public class Datos {
         }
     }
     
-    public void Buscar(DefaultTableModel model, String idBuscar){
+    public void Buscar(DefaultTableModel model, String buscarLector){
         model.setRowCount(0);
         ResultSet result = null;
         
         try {
             //System.out.println("idBuscar: " + idBuscar);
-            PreparedStatement st = connect.prepareStatement("SELECT * FROM Lectores WHERE ID = " + idBuscar);
+            PreparedStatement st = connect.prepareStatement(buscarLector);
             result = st.executeQuery();
             
             while (result.next()) {                

@@ -1,7 +1,6 @@
 package Presentacion;
 
 import java.awt.Frame;
-import Datos.Datos;
 
 public class Menu extends javax.swing.JFrame {
 

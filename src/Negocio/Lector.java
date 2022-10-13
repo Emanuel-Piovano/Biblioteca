@@ -3,6 +3,7 @@ package Negocio;
 import Datos.Datos;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import javax.swing.table.DefaultTableModel;
 
 public class Lector {
     //Atributos
@@ -156,6 +157,13 @@ public class Lector {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
+    //Método para conectar a la base de datos
+    public void Conectar(){
+        Datos dt = new Datos();
+
+        dt.Conectar();
+    }
+    
     //Método para agregar un nuevo lector
     public void Agregar(){
         Datos dt = new Datos();
@@ -172,5 +180,29 @@ public class Lector {
         int modificarSocio = socio ? 1:0;
         String modificarLector = ("UPDATE Lectores SET Nombre = '"+nombre+"', Apellido = '"+apellido+"', DNI = '"+dni+"', FechaNacimiento = '"+fechaNacimiento+"', Direccion = '"+direccion+"', Localidad = "+localidad+", Provincia = "+provincia+", Telefono = '"+telefono+"', Socio = "+modificarSocio+", Deuda = "+deuda+" WHERE ID = "+id+"");
         dt.Modificar(modificarLector);
+    }
+    
+    //Método para eliminar un lector
+    public void Eliminar(String idEliminar){
+        Datos dt = new Datos();
+
+        String eliminarLector = ("DELETE FROM Lectores WHERE id = " + idEliminar);
+        dt.Eliminar(eliminarLector);
+    }
+    
+    //Método para refrescar
+    public void Refrescar(DefaultTableModel model){
+        Datos dt = new Datos();
+
+        String refrescar = ("SELECT * FROM Lectores");
+        dt.Refrescar(model, refrescar);
+    }
+        
+    //Método para buscar un Id
+    public void Buscar(DefaultTableModel model, String idBuscar){
+        Datos dt = new Datos();
+
+        String buscarLector = ("SELECT * FROM Lectores WHERE ID = " + idBuscar);
+        dt.Buscar(model, buscarLector);
     }
 }
