@@ -7,6 +7,7 @@ import javax.swing.table.DefaultTableModel;
 
 public class Lector {
     //Atributos
+    /*
     protected int id;
     protected String nombre;
     protected String apellido;
@@ -18,7 +19,18 @@ public class Lector {
     protected String telefono;
     protected boolean socio;
     protected float deuda;
-    
+    */
+    private int id;
+    private String nombre;
+    private String apellido;
+    private String dni;
+    private LocalDate fechaNacimiento;
+    private String direccion;
+    private int localidad;
+    private int provincia;
+    private String telefono;
+    private boolean socio;
+    private float deuda;
     
     //Métodos
     //Método constructor 1

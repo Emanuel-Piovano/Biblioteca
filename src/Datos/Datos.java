@@ -18,8 +18,9 @@ import java.util.Set;
 
 public class Datos {
     //Atributos
-    String baseDeDatos = "org.sqlite.JDBC";
-    String direccion = "jdbc:sqlite:D:/Documents/BaseDeDatos/Biblioteca.s3db";
+    //Constantes de conexión a la Base de Datos
+    private final String baseDeDatos = "org.sqlite.JDBC";
+    private final String direccion = "jdbc:sqlite:D:/Documents/BaseDeDatos/Biblioteca.s3db";
     
     public static Connection connect ;
     
@@ -58,6 +59,7 @@ public class Datos {
                         }
                 );
             }
+            
         } catch (Exception x) {
             JOptionPane.showMessageDialog(null, x.getMessage().toString());
         }
