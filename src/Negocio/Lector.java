@@ -4,6 +4,8 @@ import Datos.Datos;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import javax.swing.table.DefaultTableModel;
+import java.sql.ResultSet;
+import javax.swing.JOptionPane;
 
 public class Lector {
     //Atributos
@@ -202,6 +204,7 @@ public class Lector {
         dt.Eliminar(eliminarLector);
     }
     
+    /*
     //Método para refrescar
     public void Refrescar(DefaultTableModel model){
         Datos dt = new Datos();
@@ -209,7 +212,44 @@ public class Lector {
         String refrescar = ("SELECT * FROM Lectores");
         dt.Refrescar(model, refrescar);
     }
+    */
+
+    //Método para refrescar
+    public void Refrescar(DefaultTableModel model){
+        Datos dt = new Datos();
+
+        String refrescar = ("SELECT * FROM Lectores");
         
+        
+        model.setRowCount(0);
+        ResultSet result = null;
+
+        try {
+            result = dt.Refrescar(model, refrescar, result);
+
+            while (result.next()) {
+                model.addRow(
+                        new Object[]{
+                            result.getInt("ID"),
+                            result.getString("Nombre"),
+                            result.getString("Apellido"),
+                            result.getString("DNI"),
+                            result.getString("FechaNacimiento"),
+                            result.getString("Direccion"),
+                            result.getInt("Localidad"),
+                            result.getInt("Provincia"),
+                            result.getString("Telefono"),
+                            result.getBoolean("Socio"),
+                            result.getFloat("Deuda")
+                        }
+                );
+            }
+
+        } catch (Exception x) {
+            JOptionPane.showMessageDialog(null, x.getMessage().toString());
+        }
+    }
+    
     //Método para buscar un Id
     public void Buscar(DefaultTableModel model, String idBuscar){
         Datos dt = new Datos();
