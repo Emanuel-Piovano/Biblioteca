@@ -265,11 +265,14 @@ public class Lectores extends javax.swing.JFrame {
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         // TODO add your handling code here:
-        Lector buscar = new Lector();
+        int idBuscar = Integer.parseInt(textId.getText());
+        
+        Lector buscar = new Lector(idBuscar);
         //Datos dt = new Datos();                             //Se crea el objeto dt correspondiente a la clase Datos
         
-        String idBuscar = textId.getText();
-        buscar.Buscar(model, idBuscar);                                //Se llama al método Refrescar del objeto dt de la clase Datos
+        //String idBuscar = textId.getText();
+        //buscar.Buscar(model, idBuscar);                                //Se llama al método Refrescar del objeto dt de la clase Datos
+        buscar.Buscar(model);                                                //Se llama al método Refrescar del objeto dt de la clase Datos
     }//GEN-LAST:event_jButton7ActionPerformed
 
     /**

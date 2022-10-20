@@ -1,6 +1,5 @@
 package Datos;
 
-import Negocio.Lector;
 import java.awt.Frame;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -35,38 +34,6 @@ public class Datos {
         }
     }
     
-    /*
-    public void Refrescar(DefaultTableModel model, String refrescar) {
-        model.setRowCount(0);
-        ResultSet result = null;
-
-        try {
-            PreparedStatement st = connect.prepareStatement(refrescar);
-            result = st.executeQuery();
-
-            while (result.next()) {
-                model.addRow(
-                        new Object[]{
-                            result.getInt("ID"),
-                            result.getString("Nombre"),
-                            result.getString("Apellido"),
-                            result.getString("DNI"),
-                            result.getString("FechaNacimiento"),
-                            result.getString("Direccion"),
-                            result.getInt("Localidad"),
-                            result.getInt("Provincia"),
-                            result.getString("Telefono"),
-                            result.getBoolean("Socio"),
-                            result.getFloat("Deuda")
-                        }
-                );
-            }
-
-        } catch (Exception x) {
-            JOptionPane.showMessageDialog(null, x.getMessage().toString());
-        }
-    }
-    */
     public ResultSet Refrescar(DefaultTableModel model, String refrescar, ResultSet result) {
         try {
             PreparedStatement st = connect.prepareStatement(refrescar);
@@ -79,10 +46,10 @@ public class Datos {
         return result;
     }
 
-    public void Agregar(String nuevoLector) {
+    public void Agregar(String agregar) {
 
         try {
-            PreparedStatement st = connect.prepareStatement(nuevoLector);
+            PreparedStatement st = connect.prepareStatement(agregar);
             st.execute();
             JOptionPane.showMessageDialog(null, "Datos guardados");
         } catch (Exception x) {
@@ -90,10 +57,9 @@ public class Datos {
         }
     }
 
-    public void Eliminar(String eliminarLector) {
+    public void Eliminar(String eliminar) {
         try {
-            //PreparedStatement st = connect.prepareStatement("DELETE FROM Lectores WHERE id = " + idEliminar);
-            PreparedStatement st = connect.prepareStatement(eliminarLector);
+            PreparedStatement st = connect.prepareStatement(eliminar);
             st.execute();
             JOptionPane.showMessageDialog(null, "El registro ha sido eliminado correctamente.");
         } catch (Exception x) {
@@ -102,41 +68,22 @@ public class Datos {
         }
     }
 
-    public void Buscar(DefaultTableModel model, String buscarLector) {
-        model.setRowCount(0);
-        ResultSet result = null;
-
+    public ResultSet Buscar(DefaultTableModel model, String buscar, ResultSet result) {
         try {
-            //System.out.println("idBuscar: " + idBuscar);
-            PreparedStatement st = connect.prepareStatement(buscarLector);
+            PreparedStatement st = connect.prepareStatement(buscar);
             result = st.executeQuery();
-
-            while (result.next()) {
-                model.addRow(
-                        new Object[]{
-                            result.getInt("ID"),
-                            result.getString("Nombre"),
-                            result.getString("Apellido"),
-                            result.getString("DNI"),
-                            result.getString("FechaNacimiento"),
-                            result.getString("Direccion"),
-                            result.getInt("Localidad"),
-                            result.getInt("Provincia"),
-                            result.getString("Telefono"),
-                            result.getBoolean("Socio"),
-                            result.getFloat("Deuda")
-                        }
-                );
-            }
+       
         } catch (Exception x) {
             JOptionPane.showMessageDialog(null, x.getMessage().toString());
         }
+        
+        return result;
     }
 
-    public void Modificar(String modificarLector) {
+    public void Modificar(String modificar) {
 
         try {
-            PreparedStatement st = connect.prepareStatement(modificarLector);
+            PreparedStatement st = connect.prepareStatement(modificar);
             st.execute();
             JOptionPane.showMessageDialog(null, "Datos modificados");
         } catch (Exception x) {

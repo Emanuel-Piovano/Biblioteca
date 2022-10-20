@@ -9,19 +9,6 @@ import javax.swing.JOptionPane;
 
 public class Lector {
     //Atributos
-    /*
-    protected int id;
-    protected String nombre;
-    protected String apellido;
-    protected String dni;
-    protected LocalDate fechaNacimiento;
-    protected String direccion;
-    protected int localidad;
-    protected int provincia;
-    protected String telefono;
-    protected boolean socio;
-    protected float deuda;
-    */
     private int id;
     private String nombre;
     private String apellido;
@@ -50,7 +37,7 @@ public class Lector {
         this.deuda = 0;
         this.socio = false;
     }
-
+    
     //Método constructor 2
     public Lector(int id) {
         this.id = id;
@@ -204,23 +191,12 @@ public class Lector {
         dt.Eliminar(eliminarLector);
     }
     
-    /*
     //Método para refrescar
     public void Refrescar(DefaultTableModel model){
         Datos dt = new Datos();
 
         String refrescar = ("SELECT * FROM Lectores");
-        dt.Refrescar(model, refrescar);
-    }
-    */
 
-    //Método para refrescar
-    public void Refrescar(DefaultTableModel model){
-        Datos dt = new Datos();
-
-        String refrescar = ("SELECT * FROM Lectores");
-        
-        
         model.setRowCount(0);
         ResultSet result = null;
 
@@ -251,10 +227,38 @@ public class Lector {
     }
     
     //Método para buscar un Id
-    public void Buscar(DefaultTableModel model, String idBuscar){
+    public void Buscar(DefaultTableModel model){
         Datos dt = new Datos();
+        
+        String buscarLector = ("SELECT * FROM Lectores WHERE ID = " + id);
 
-        String buscarLector = ("SELECT * FROM Lectores WHERE ID = " + idBuscar);
-        dt.Buscar(model, buscarLector);
+        model.setRowCount(0);
+        ResultSet result = null;
+
+        try {
+            result = dt.Buscar(model, buscarLector, result);
+
+            while (result.next()) {
+                model.addRow(
+                        new Object[]{
+                            this.id = result.getInt("ID"),
+                            this.nombre = result.getString("Nombre"),
+                            this.apellido = result.getString("Apellido"),
+                            this.dni = result.getString("DNI"),
+                            this.fechaNacimiento = result.getDate("FechaNacimiento").toLocalDate(),
+                            this.direccion = result.getString("Direccion"),
+                            this.localidad = result.getInt("Localidad"),
+                            this.provincia = result.getInt("Provincia"),
+                            this.telefono = result.getString("Telefono"),
+                            this.socio = result.getBoolean("Socio"),
+                            this.deuda = result.getFloat("Deuda")
+                        }
+                );
+            }
+
+        } catch (Exception x) {
+            JOptionPane.showMessageDialog(null, x.getMessage().toString());
+        }
     }
+    
 }
