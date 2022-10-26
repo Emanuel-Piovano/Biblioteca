@@ -2,24 +2,24 @@ package Presentacion;
 
 import Negocio.Lector;
 import java.awt.Frame;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
-import java.sql.SQLException;
+import java.awt.Graphics;
+import java.awt.Image;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JOptionPane;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import javax.swing.ImageIcon;
+import javax.swing.JPanel;
 
 public class Lectores extends javax.swing.JFrame {
     
     /**
      * Creates new form Ventana
      */
+    
+    FondoPanel fondo = new FondoPanel();
+    
     public Lectores() {
+        this.setContentPane(fondo);
+        
         initComponents();
         setTitle("Lectores");
         setLocationRelativeTo(null);
@@ -73,9 +73,16 @@ public class Lectores extends javax.swing.JFrame {
             Class[] types = new Class [] {
                 java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.Boolean.class, java.lang.Float.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false, false, false
+            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
         jScrollPane1.setViewportView(jTable1);
@@ -322,4 +329,16 @@ public class Lectores extends javax.swing.JFrame {
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField textId;
     // End of variables declaration//GEN-END:variables
+
+    //Se le coloca una imagen como fondo de pantalla
+    class FondoPanel extends JPanel{
+        private Image imagen;
+        
+        public void paint(Graphics g){
+            imagen = new ImageIcon(getClass().getResource("/Imagenes/Biblioteca.jpg")).getImage();
+            g.drawImage(imagen, 0, 0, getWidth(), getHeight(), this);
+            setOpaque(false);
+            super.paint(g);
+        }
+    }
 }
