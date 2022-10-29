@@ -3,7 +3,10 @@ package Negocio;
 import Datos.Datos;
 import javax.swing.table.DefaultTableModel;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import javax.swing.JOptionPane;
+import javax.swing.JComboBox;
+
 
 public class Libro {
     //Atributos
@@ -265,6 +268,48 @@ public class Libro {
 
         } catch (Exception x) {
             JOptionPane.showMessageDialog(null, x.getMessage().toString());
+        }
+    }
+    
+    //Método para listar los autores de los libros un JComboBox
+    public void ListadoAutoresLibros(JComboBox autorLibros){
+        Datos dt = new Datos();
+        
+        String autorLibro = ("SELECT Autor FROM Libros");
+
+        ResultSet result = null;
+
+        try {
+            result = dt.Buscar(autorLibro, result);
+            autorLibros.addItem("Seleccione autor");
+            
+            while (result.next()) {
+                autorLibros.addItem(result.getString("Autor"));
+            }
+
+        } catch (SQLException x) {
+            JOptionPane.showMessageDialog(null, x.getMessage());
+        }
+    }
+    
+    //Método para listar los nombres de los libros un JComboBox
+    public void ListadoNombresLibros(JComboBox nombreLibros){
+        Datos dt = new Datos();
+        
+        String nombreLibro = ("SELECT Nombre FROM Libros WHERE ID = 1");
+
+        ResultSet result = null;
+        //ResultSet result;
+
+        try {
+            result = dt.Buscar(nombreLibro, result);
+
+            while (result.next()) {
+                nombreLibros.addItem(result.getString("Nombre"));
+            }
+
+        } catch (SQLException x) {
+            JOptionPane.showMessageDialog(null, x.getMessage());
         }
     }
 }

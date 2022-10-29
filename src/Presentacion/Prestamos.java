@@ -220,6 +220,11 @@ public class Prestamos extends javax.swing.JFrame {
         jScrollPane5.setViewportView(jTable2);
 
         jButton1.setText("Agregar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Modificar");
 
@@ -418,6 +423,41 @@ public class Prestamos extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "No se selecciono ninguna fila o no existen datos cargados en la tabla.");
         }
     }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        //Al oprimir el botón "Modificar", nos dirige a la ventana "AgregarLector"
+        AgregarPrestamo obj = new AgregarPrestamo();
+        
+        int filaSeleccionada = jTable1.getSelectedRow();
+        
+        if(filaSeleccionada >= 0){
+            int idModificar = Integer.parseInt(jTable1.getValueAt(filaSeleccionada, 0).toString());
+            String nombreModificar = jTable1.getValueAt(filaSeleccionada, 1).toString();
+            String apellidoModificar = jTable1.getValueAt(filaSeleccionada, 2).toString();
+            
+            /*
+            System.out.println("ID: " + idModificar);
+            System.out.println("Nombre: " + nombreModificar);
+            System.out.println("Apellido: " + apellidoModificar);
+            System.out.println("DNI: " + dniModificar);
+            System.out.println("Fecha Nacimiento: " + fechaNacimientoModificar);
+            System.out.println("Direccion: " + direccionModificar);
+            System.out.println("Localidad: " + localidadModificar);
+            System.out.println("Provincia: " + provinciaModificar);
+            System.out.println("Telefono: " + telefonoModificar);
+            System.out.println("Socio: " + socioModificar);
+            System.out.println("Deuda: " + deudaModificar);
+            */
+            
+            obj.setVisible(true);
+            obj.Cargar(idModificar, nombreModificar, apellidoModificar);
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "No se selecciono ninguna fila o no existen datos cargados en la tabla.");
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

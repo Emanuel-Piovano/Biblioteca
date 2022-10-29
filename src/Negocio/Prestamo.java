@@ -202,6 +202,5 @@ public class Prestamo {
         } catch (Exception x) {
             JOptionPane.showMessageDialog(null, x.getMessage().toString());
         }
-    }
-    
+    }    
 }

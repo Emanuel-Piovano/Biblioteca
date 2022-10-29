@@ -79,6 +79,18 @@ public class Datos {
         
         return result;
     }
+    
+    public ResultSet Buscar(String buscar, ResultSet result) {
+        try {
+            PreparedStatement st = connect.prepareStatement(buscar);
+            result = st.executeQuery();
+       
+        } catch (SQLException x) {
+            JOptionPane.showMessageDialog(null, x.getMessage());
+        }
+        
+        return result;
+    }
 
     public void Modificar(String modificar) {
 
