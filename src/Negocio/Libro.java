@@ -296,7 +296,7 @@ public class Libro {
     public void ListadoNombresLibros(JComboBox nombreLibros){
         Datos dt = new Datos();
         
-        String nombreLibro = ("SELECT Nombre FROM Libros WHERE ID = 1");
+        String nombreLibro = ("SELECT Nombre FROM Libros WHERE Autor = \"" + autor + "\"");
 
         ResultSet result = null;
         //ResultSet result;

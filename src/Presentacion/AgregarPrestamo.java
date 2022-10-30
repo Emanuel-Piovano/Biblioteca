@@ -263,6 +263,7 @@ public class AgregarPrestamo extends javax.swing.JFrame {
             String autorLibro = AutorLibro.getSelectedItem().toString();
             listado.setAutor(autorLibro);
             System.out.println("El autor seleccionado es: " + autorLibro);
+            NombreLibro.setSelectedIndex(0);
             listado.ListadoNombresLibros(NombreLibro);
         }
     }//GEN-LAST:event_AutorLibroActionPerformed
