@@ -34,6 +34,16 @@ public class Datos {
         }
     }
     
+    public void Desconectar(ResultSet resulset) {
+        try {
+            resulset.close();
+            connect.close();
+
+        } catch (SQLException x) {
+            JOptionPane.showMessageDialog(null, x.getMessage());
+        }
+    }
+    
     public ResultSet Refrescar(DefaultTableModel model, String refrescar, ResultSet result) {
         try {
             PreparedStatement st = connect.prepareStatement(refrescar);
@@ -91,7 +101,7 @@ public class Datos {
         
         return result;
     }
-
+    
     public void Modificar(String modificar) {
 
         try {

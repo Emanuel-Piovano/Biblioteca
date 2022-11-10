@@ -1,12 +1,21 @@
 package Presentacion;
 
 import Negocio.Libro;
+import java.awt.Graphics;
+import java.awt.Image;
+import javax.swing.ImageIcon;
+import javax.swing.JPanel;
 
 public class AgregarLibro extends javax.swing.JFrame {
     /**
      * Creates new form AgregarLector
      */
+    
+    FondoPanel fondo = new FondoPanel();
+    
     public AgregarLibro() {
+        this.setContentPane(fondo);
+        
         initComponents();
         setTitle("Agregar nuevo libro");
         setLocationRelativeTo(null);
@@ -61,24 +70,46 @@ public class AgregarLibro extends javax.swing.JFrame {
         });
 
         jLabel1.setText("Nombre");
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
 
         jLabel2.setText("Autor");
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
 
         jLabel3.setText("Editorial");
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
 
         jLabel4.setText("Genero");
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
 
         jLabel5.setText("Colección");
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
 
         jLabel6.setText("Estado");
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
 
         jLabel7.setText("ISBN");
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
 
         jLabel8.setText("Páginas");
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
 
         jLabel9.setText("Año Publicación");
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
 
         jLabel10.setText("Descripción");
+        jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
+
+        textNombre.setHorizontalAlignment(javax.swing.JTextField.LEFT);
 
         textGenero.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -87,9 +118,13 @@ public class AgregarLibro extends javax.swing.JFrame {
         });
 
         botonesSiNo.add(botonDisponible);
+        botonDisponible.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        botonDisponible.setForeground(new java.awt.Color(255, 255, 255));
         botonDisponible.setText("Disponible");
 
         botonesSiNo.add(botonOcupado);
+        botonOcupado.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        botonOcupado.setForeground(new java.awt.Color(255, 255, 255));
         botonOcupado.setText("Ocupado");
 
         jButton1.setText("Guardar");
@@ -107,15 +142,25 @@ public class AgregarLibro extends javax.swing.JFrame {
         });
 
         jLabel11.setText("Nuevo libro");
-        jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
 
         botonEstado.setText("Estado");
+        botonEstado.setEnabled(false);
+        botonEstado.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        botonEstado.setForeground(new java.awt.Color(255, 255, 255));
 
         jLabel12.setText("ID");
+        jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
 
         textId.setEditable(false);
 
         jLabel13.setText("Precio");
+        jLabel13.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
+
+        textDescripcion.setHorizontalAlignment(javax.swing.JTextField.LEFT);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -153,7 +198,7 @@ public class AgregarLibro extends javax.swing.JFrame {
                                 .addComponent(botonDisponible)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(botonOcupado)))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -224,12 +269,13 @@ public class AgregarLibro extends javax.swing.JFrame {
                             .addComponent(jLabel10)
                             .addComponent(textDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(textColeccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel13)
-                        .addComponent(textPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(textPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel5)
+                        .addComponent(textColeccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(30, 30, 30)
@@ -279,18 +325,7 @@ public class AgregarLibro extends javax.swing.JFrame {
         {
             nuevo.setEstado(false);
         }
-        /*
-        System.out.println("El id es: " + nuevo.getId());
-        System.out.println("El nombre es: " + nuevo.getNombre());
-        System.out.println("El apellido es: " + nuevo.getApellido());
-        System.out.println("El dni es: " + nuevo.getDni());
-        System.out.println("La fecha de nacimiento es: " + nuevo.getFechaNacimiento());
-        System.out.println("La direccion es: " + nuevo.getDireccion());
-        System.out.println("La localidad es: " + nuevo.getLocalidad());
-        System.out.println("La provincia es: " + nuevo.getProvincia());
-        System.out.println("El telefono es: " + nuevo.getTelefono());
-        System.out.println("La deuda es: " + nuevo.getDeuda());
-        */
+
         if (botonEstado.isSelected() == false){
             nuevo.Agregar();
         }
@@ -320,6 +355,7 @@ public class AgregarLibro extends javax.swing.JFrame {
         textAnioPublicacion.setText(String.valueOf(anioPublicacionModificar));
         textDescripcion.setText(descripcionModificar);
         textPrecio.setText(String.valueOf(precioModificar));
+        
         if(estadoModificar == true){
             botonDisponible.setSelected(true);
         }
@@ -404,4 +440,16 @@ public class AgregarLibro extends javax.swing.JFrame {
     private javax.swing.JTextField textPaginas;
     private javax.swing.JTextField textPrecio;
     // End of variables declaration//GEN-END:variables
+
+    //Se le coloca una imagen como fondo de pantalla
+    class FondoPanel extends JPanel{
+        private Image imagen;
+        
+        public void paint(Graphics g){
+            imagen = new ImageIcon(getClass().getResource("/Imagenes/Biblioteca.jpg")).getImage();
+            g.drawImage(imagen, 0, 0, getWidth(), getHeight(), this);
+            setOpaque(false);
+            super.paint(g);
+        }
+    }
 }

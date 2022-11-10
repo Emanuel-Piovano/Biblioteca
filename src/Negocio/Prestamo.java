@@ -18,6 +18,11 @@ public class Prestamo {
     private LocalDate fechaPrestamo;
     private LocalDate fechaDevolucion;
     private Boolean estado;
+    private int idLibro1;
+    private int idLibro2;
+    private int idLibro3;
+    private int idLibro4;
+    private int idLibro5;
     
     //Métodos
     //Método constructor 1
@@ -31,6 +36,11 @@ public class Prestamo {
         this.fechaPrestamo = LocalDate.now();
         this.fechaDevolucion = LocalDate.now();
         this.estado = false;
+        this.idLibro1 = 0;
+        this.idLibro2 = 0;
+        this.idLibro3 = 0;
+        this.idLibro4 = 0;
+        this.idLibro5 = 0;
     }
     
     //Método constructor 2
@@ -38,6 +48,13 @@ public class Prestamo {
         this.lectorId = lectorId;
     }
 
+    //Método constructor 3
+    public Prestamo(int id, int lectorId) {
+        this.id = id;
+        this.lectorId = lectorId;
+    }
+    
+    
     
     //Getters y Setters
     //Getter id
@@ -129,6 +146,58 @@ public class Prestamo {
     public void setEstado(Boolean estado) {
         this.estado = estado;
     }
+
+    //Getter idLibro1
+    public int getIdLibro1() {
+        return idLibro1;
+    }
+
+    //Setter idLibro1
+    public void setIdLibro1(int idLibro1) {
+        this.idLibro1 = idLibro1;
+    }
+    
+    //Getter idLibro2
+    public int getIdLibro2() {
+        return idLibro2;
+    }
+
+    //Setter idLibro2
+    public void setIdLibro2(int idLibro2) {
+        this.idLibro2 = idLibro2;
+    }
+
+    //Getter idLibro3
+    public int getIdLibro3() {
+        return idLibro3;
+    }
+
+    //Setter idLibro3
+    public void setIdLibro3(int idLibro3) {
+        this.idLibro3 = idLibro3;
+    }
+
+    //Getter idLibro4
+    public int getIdLibro4() {
+        return idLibro4;
+    }
+
+    //Setter idLibro4
+    public void setIdLibro4(int idLibro4) {
+        this.idLibro4 = idLibro4;
+    }
+
+    //Getter idLibro5
+    public int getIdLibro5() {
+        return idLibro5;
+    }
+
+    //Setter idLibro5
+    public void setIdLibro5(int idLibro5) {
+        this.idLibro5 = idLibro5;
+    }
+    
+    
     
     public void setFechaPrestamo(String text, DateTimeFormatter JEFormatter) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
@@ -148,10 +217,10 @@ public class Prestamo {
     //Método para agregar un nuevo lector
     public void Agregar(){
         Datos dt = new Datos();
-
+        
         int nuevoEstado = estado ? 1:0;
-        String nuevoPrestamo = ("INSERT INTO Prestamos (LectorID,NombreLector,ApellidoLector,CantidadLibros,CostoTotal,FechaPrestamo,FechaDevolucion,Estado) VALUES ("+lectorId+",'"+nombreLector+"','"+apellidoLector+"',"+cantidadLibros+","+costoTotal+",'"+fechaPrestamo+"','"+fechaDevolucion+"',"+nuevoEstado+")");
-        dt.Agregar(nuevoPrestamo);
+        String nuevoPrestamo = ("INSERT INTO Prestamos (LectorID,NombreLector,ApellidoLector,CantidadLibros,CostoTotal,FechaPrestamo,FechaDevolucion,Estado,IDLibro1,IDLibro2,IDLibro3,IDLibro4,IDLibro5) VALUES ("+lectorId+",'"+nombreLector+"','"+apellidoLector+"',"+cantidadLibros+","+costoTotal+",'"+fechaPrestamo+"','"+fechaDevolucion+"',"+nuevoEstado+", "+idLibro1+", "+idLibro2+", "+idLibro3+", "+idLibro4+", "+idLibro5+")");
+        dt.Agregar(nuevoPrestamo);        
     }
 
     //Método para modificar un lector
@@ -159,7 +228,7 @@ public class Prestamo {
         Datos dt = new Datos();
 
         int modificarEstado = estado ? 1:0;
-        String modificarPrestamo = ("UPDATE Prestamos SET LectorID = "+lectorId+", NombreLector = '"+nombreLector+"', ApellidoLector = '"+apellidoLector+"', CantidadLibros = "+cantidadLibros+", CostoTotal = "+costoTotal+", FechaPrestamo = '"+fechaPrestamo+"', FechaDevolucion = '"+fechaDevolucion+"', Estado = "+modificarEstado+" WHERE ID = "+id+"");
+        String modificarPrestamo = ("UPDATE Prestamos SET LectorID = "+lectorId+", NombreLector = '"+nombreLector+"', ApellidoLector = '"+apellidoLector+"', CantidadLibros = "+cantidadLibros+", CostoTotal = "+costoTotal+", FechaPrestamo = '"+fechaPrestamo+"', FechaDevolucion = '"+fechaDevolucion+"', Estado = "+modificarEstado+", IDLibro1 = "+idLibro1+", IDLibro2 = "+idLibro2+", IDLibro3 = "+idLibro3+", IDLibro4 = "+idLibro4+", IDLibro5 = "+idLibro5+" WHERE ID = "+id+"");
         dt.Modificar(modificarPrestamo);
     }
     
@@ -182,19 +251,57 @@ public class Prestamo {
 
         try {
             result = dt.Buscar(model, buscarPrestamo, result);
+            
+            DateTimeFormatter formato = DateTimeFormatter.ofPattern("yyyy-MM-dd");  //Este es el formato que nos devuelve la base de datos
+            
+            while (result.next()) {
+                model.addRow(
+                        new Object[]{
+                            this.id = result.getInt("ID"),
+                            this.fechaPrestamo = LocalDate.parse(result.getString("FechaPrestamo"), formato),
+                            this.fechaDevolucion = LocalDate.parse(result.getString("FechaDevolucion"), formato),
+                            this.cantidadLibros = result.getInt("CantidadLibros"),
+                            this.costoTotal = result.getFloat("CostoTotal"),
+                            this.estado = result.getBoolean("Estado"),
+                            this.idLibro1 = result.getInt("IDLibro1"),
+                            this.idLibro2 = result.getInt("IDLibro2"),
+                            this.idLibro3 = result.getInt("IDLibro3"),
+                            this.idLibro4 = result.getInt("IDLibro4"),
+                            this.idLibro5 = result.getInt("IDLibro5")
+                        }
+                );
+            }
+        } catch (Exception x) {
+            JOptionPane.showMessageDialog(null, x.getMessage().toString());
+        }
+    }
+
+    //Método para buscar un Id
+    public void BuscarLibros(DefaultTableModel model){
+        Datos dt = new Datos();
+        
+        String buscarPrestamo = ("SELECT * FROM Prestamos WHERE LectorID = " + lectorId + " AND ID = " + id);
+
+        model.setRowCount(0);
+        ResultSet result = null;
+
+        try {
+            result = dt.Buscar(model, buscarPrestamo, result);
 
             while (result.next()) {
                 model.addRow(
                         new Object[]{
                             this.id = result.getInt("ID"),
-                            this.lectorId = result.getInt("LectorID"),
-                            this.nombreLector = result.getString("NombreLector"),
-                            this.apellidoLector = result.getString("ApellidoLector"),
-                            this.cantidadLibros = result.getInt("CantidadLibros"),
-                            this.costoTotal = result.getFloat("CostoTotal"),
                             this.fechaPrestamo = result.getDate("FechaPrestamo").toLocalDate(),
                             this.fechaDevolucion = result.getDate("FechaDevolucion").toLocalDate(),
-                            this.estado = result.getBoolean("Estado")
+                            this.cantidadLibros = result.getInt("CantidadLibros"),
+                            this.costoTotal = result.getFloat("CostoTotal"),
+                            this.estado = result.getBoolean("Estado"),
+                            this.idLibro1 = result.getInt("IDLibro1"),
+                            this.idLibro2 = result.getInt("IDLibro2"),
+                            this.idLibro3 = result.getInt("IDLibro3"),
+                            this.idLibro4 = result.getInt("IDLibro4"),
+                            this.idLibro5 = result.getInt("IDLibro5")
                         }
                 );
             }
@@ -202,5 +309,5 @@ public class Prestamo {
         } catch (Exception x) {
             JOptionPane.showMessageDialog(null, x.getMessage().toString());
         }
-    }    
+    }
 }

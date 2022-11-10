@@ -1,10 +1,16 @@
 package Negocio;
 
 import Datos.Datos;
+import Presentacion.AgregarLector;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import javax.swing.table.DefaultTableModel;
 import java.sql.ResultSet;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class Lector {
@@ -20,6 +26,7 @@ public class Lector {
     private String telefono;
     private boolean socio;
     private float deuda;
+
     
     //Métodos
     //Método constructor 1
@@ -237,7 +244,9 @@ public class Lector {
 
         try {
             result = dt.Buscar(model, buscarLector, result);
-
+            
+            DateTimeFormatter formato = DateTimeFormatter.ofPattern("yyyy-MM-dd");  //Este es el formato que nos devuelve la base de datos
+            
             while (result.next()) {
                 model.addRow(
                         new Object[]{
@@ -245,7 +254,7 @@ public class Lector {
                             this.nombre = result.getString("Nombre"),
                             this.apellido = result.getString("Apellido"),
                             this.dni = result.getString("DNI"),
-                            this.fechaNacimiento = result.getDate("FechaNacimiento").toLocalDate(),
+                            this.fechaNacimiento = LocalDate.parse(result.getString("FechaNacimiento"), formato),
                             this.direccion = result.getString("Direccion"),
                             this.localidad = result.getInt("Localidad"),
                             this.provincia = result.getInt("Provincia"),
@@ -254,6 +263,27 @@ public class Lector {
                             this.deuda = result.getFloat("Deuda")
                         }
                 );
+                //System.out.println("La fecha es: " + getFechaNacimiento());
+                
+                String fecha = fechaNacimiento.toString();
+                //System.out.println("La fecha es: " + fecha);
+                
+                
+                //Formato inicial.  
+                SimpleDateFormat formato2 = new SimpleDateFormat("yyyy-MM-dd");
+                String fechaInicio  = String.valueOf(getFechaNacimiento());
+                try {
+                    Date d = formato2.parse(fechaInicio);
+
+                    //Aplica formato requerido.
+                    formato2.applyPattern("dd/MM/yyyy");
+                    String nuevoFormato = formato2.format(d);
+                    //setFechaNacimiento(LocalDate.parse(nuevoFormato));
+                    //System.out.println("El formato es: " + nuevoFormato);
+                } catch (ParseException ex) {
+                    Logger.getLogger(AgregarLector.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
             }
 
         } catch (Exception x) {

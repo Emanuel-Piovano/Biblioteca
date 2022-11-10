@@ -1,24 +1,26 @@
 package Presentacion;
 
-import Negocio.Lector;
 import Negocio.Libro;
 import Negocio.Prestamo;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 public class AgregarPrestamo extends javax.swing.JFrame {
     /**
      * Creates new form AgregarLector
      */
-    Libro listado = new Libro();
+    Libro libros = new Libro();
     FondoPanel fondo = new FondoPanel();
     
     public AgregarPrestamo() {
@@ -27,10 +29,11 @@ public class AgregarPrestamo extends javax.swing.JFrame {
         initComponents();
         setTitle("Agregar nuevo lector");
         setLocationRelativeTo(null);
-        listado.ListadoAutoresLibros(AutorLibro);
-        String autorLibro = AutorLibro.getSelectedItem().toString();
-        listado.setAutor(autorLibro);
-        listado.ListadoNombresLibros(NombreLibro);
+        libros.ListadoAutoresLibros(textAutorLibro1);
+        libros.ListadoAutoresLibros(textAutorLibro2);
+        libros.ListadoAutoresLibros(textAutorLibro3);
+        libros.ListadoAutoresLibros(textAutorLibro4);
+        libros.ListadoAutoresLibros(textAutorLibro5);
     }
 
     /**
@@ -47,20 +50,45 @@ public class AgregarPrestamo extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
         textNombre = new javax.swing.JTextField();
         textApellido = new javax.swing.JTextField();
-        textFechaNacimiento = new javax.swing.JTextField();
-        textDeuda = new javax.swing.JTextField();
+        textFechaPrestamo = new javax.swing.JTextField();
+        textTotal = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jToggleButton1 = new javax.swing.JToggleButton();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         textId = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
-        textFechaNacimiento1 = new javax.swing.JTextField();
-        NombreLibro = new javax.swing.JComboBox<>();
-        AutorLibro = new javax.swing.JComboBox<>();
+        textFechaDevolucion = new javax.swing.JTextField();
+        textNombreLibro1 = new javax.swing.JComboBox<>();
+        textAutorLibro1 = new javax.swing.JComboBox<>();
+        textIdLibro1 = new javax.swing.JTextField();
+        textPrecioLibro1 = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        textIdLibro2 = new javax.swing.JTextField();
+        textAutorLibro2 = new javax.swing.JComboBox<>();
+        textNombreLibro2 = new javax.swing.JComboBox<>();
+        textPrecioLibro2 = new javax.swing.JTextField();
+        textPrecioLibro3 = new javax.swing.JTextField();
+        textIdLibro4 = new javax.swing.JTextField();
+        textAutorLibro4 = new javax.swing.JComboBox<>();
+        textNombreLibro4 = new javax.swing.JComboBox<>();
+        textPrecioLibro4 = new javax.swing.JTextField();
+        textNombreLibro3 = new javax.swing.JComboBox<>();
+        textAutorLibro3 = new javax.swing.JComboBox<>();
+        textIdLibro3 = new javax.swing.JTextField();
+        textIdLibro5 = new javax.swing.JTextField();
+        textAutorLibro5 = new javax.swing.JComboBox<>();
+        textNombreLibro5 = new javax.swing.JComboBox<>();
+        textPrecioLibro5 = new javax.swing.JTextField();
+        botonEstado = new javax.swing.JRadioButton();
+        textIdPrestamo = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -70,18 +98,24 @@ public class AgregarPrestamo extends javax.swing.JFrame {
         });
 
         jLabel1.setText("Nombre");
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
 
         jLabel2.setText("Apellido");
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
 
         jLabel4.setText("Fecha prestamo");
-
-        jLabel10.setText("Deuda");
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
 
         textNombre.setEditable(false);
 
         textApellido.setEditable(false);
 
-        textFechaNacimiento.setText("dd/mm/aaaa");
+        textFechaPrestamo.setText("dd/mm/aaaa");
+
+        textTotal.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
 
         jButton1.setText("Guardar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -98,101 +132,328 @@ public class AgregarPrestamo extends javax.swing.JFrame {
         });
 
         jLabel11.setText("Nuevo prestamo");
-        jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
 
-        jLabel12.setText("ID");
+        jLabel12.setText("ID Asociado");
+        jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
 
         textId.setEditable(false);
 
         jLabel13.setText("Fecha devolución");
+        jLabel13.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
 
-        textFechaNacimiento1.setText("dd/mm/aaaa");
+        textFechaDevolucion.setText("dd/mm/aaaa");
 
-        AutorLibro.addActionListener(new java.awt.event.ActionListener() {
+        textNombreLibro1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AutorLibroActionPerformed(evt);
+                textNombreLibro1ActionPerformed(evt);
             }
         });
+
+        textAutorLibro1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textAutorLibro1ActionPerformed(evt);
+            }
+        });
+
+        textIdLibro1.setEditable(false);
+
+        textPrecioLibro1.setEditable(false);
+        textPrecioLibro1.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        textPrecioLibro1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textPrecioLibro1ActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setText("ID");
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+
+        jLabel5.setText("Autor");
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+
+        jLabel6.setText("Nombre Libro");
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+
+        jLabel7.setText("Precio");
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+
+        jLabel8.setText("Total");
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
+
+        textIdLibro2.setEditable(false);
+
+        textAutorLibro2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textAutorLibro2ActionPerformed(evt);
+            }
+        });
+
+        textNombreLibro2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textNombreLibro2ActionPerformed(evt);
+            }
+        });
+
+        textPrecioLibro2.setEditable(false);
+        textPrecioLibro2.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+
+        textPrecioLibro3.setEditable(false);
+        textPrecioLibro3.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+
+        textIdLibro4.setEditable(false);
+
+        textAutorLibro4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textAutorLibro4ActionPerformed(evt);
+            }
+        });
+
+        textNombreLibro4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textNombreLibro4ActionPerformed(evt);
+            }
+        });
+
+        textPrecioLibro4.setEditable(false);
+        textPrecioLibro4.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+
+        textNombreLibro3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textNombreLibro3ActionPerformed(evt);
+            }
+        });
+
+        textAutorLibro3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textAutorLibro3ActionPerformed(evt);
+            }
+        });
+
+        textIdLibro3.setEditable(false);
+
+        textIdLibro5.setEditable(false);
+
+        textAutorLibro5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textAutorLibro5ActionPerformed(evt);
+            }
+        });
+
+        textNombreLibro5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textNombreLibro5ActionPerformed(evt);
+            }
+        });
+
+        textPrecioLibro5.setEditable(false);
+        textPrecioLibro5.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+
+        botonEstado.setText("Estado");
+        botonEstado.setEnabled(false);
+        botonEstado.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        botonEstado.setForeground(new java.awt.Color(255, 255, 255));
+
+        textIdPrestamo.setEditable(false);
+
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel9.setText("ID Prestamo");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(266, 266, 266)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(31, 31, 31)
+                        .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(botonEstado))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(60, 60, 60)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(23, 23, 23)
-                                .addComponent(jLabel11))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(60, 60, 60)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(textNombre, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
-                                    .addComponent(textFechaNacimiento))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 91, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(32, 32, 32)
-                        .addComponent(AutorLibro, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(93, 93, 93)
-                        .addComponent(NombreLibro, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(textApellido)
-                    .addComponent(textDeuda)
-                    .addComponent(textId)
-                    .addComponent(textFechaNacimiento1, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE))
-                .addGap(120, 120, 120))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(textIdLibro1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(textAutorLibro1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                        .addComponent(textIdLibro2, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(textAutorLibro2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(textNombreLibro1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(textNombreLibro2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(textPrecioLibro1)
+                                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(textPrecioLibro2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(textIdLibro5, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(textAutorLibro5, 0, 202, Short.MAX_VALUE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(textIdLibro3, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(textIdLibro4, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(textAutorLibro3, 0, 202, Short.MAX_VALUE)
+                                            .addComponent(textAutorLibro4, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(textNombreLibro4, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(textNombreLibro3, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addGap(12, 12, 12)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(textPrecioLibro3)
+                                            .addComponent(textPrecioLibro4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(12, 12, 12)
+                                        .addComponent(textNombreLibro5, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(textPrecioLibro5, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(578, 578, 578)
+                                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(textTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(textNombre, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(textFechaPrestamo)
+                                            .addComponent(textId, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(71, 71, 71)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(textApellido)
+                                            .addComponent(textFechaDevolucion)
+                                            .addComponent(textIdPrestamo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(0, 0, Short.MAX_VALUE)))))
+                .addGap(37, 37, 37))
             .addGroup(layout.createSequentialGroup()
-                .addGap(272, 272, 272)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31)
-                .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(23, 23, 23)
+                .addComponent(jLabel11)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel11)
-                    .addComponent(jLabel12)
-                    .addComponent(textId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jLabel11)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(textId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel12))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(textIdPrestamo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel9)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1)
+                            .addComponent(textNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(textFechaPrestamo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(textApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel13)
+                            .addComponent(textFechaDevolucion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(textNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2)
-                    .addComponent(textApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel7))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(textFechaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel13)
-                    .addComponent(textFechaNacimiento1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(52, 52, 52)
+                    .addComponent(textNombreLibro1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textAutorLibro1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textIdLibro1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textPrecioLibro1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(NombreLibro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(AutorLibro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 103, Short.MAX_VALUE)
+                    .addComponent(textNombreLibro2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textAutorLibro2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textIdLibro2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textPrecioLibro2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(textNombreLibro3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textPrecioLibro3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(textNombreLibro4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textPrecioLibro4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(textAutorLibro3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textIdLibro3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(textAutorLibro4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textIdLibro4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel10)
-                    .addComponent(textDeuda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(textIdLibro5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textAutorLibro5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textNombreLibro5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textPrecioLibro5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(textTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
-                    .addComponent(jToggleButton1))
-                .addGap(25, 25, 25))
+                    .addComponent(jToggleButton1)
+                    .addComponent(botonEstado))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         pack();
@@ -206,67 +467,138 @@ public class AgregarPrestamo extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        /*
-        Lector nuevo = new Lector();
+        Prestamo nuevo = new Prestamo();
+        int contadorLibros = 0;
+        float costoTotal = 0;
         
-        nuevo.setNombre(textNombre.getText());
-        nuevo.setApellido(textApellido.getText());
-        nuevo.setDni(textDni.getText());
-        DateTimeFormatter JEFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        nuevo.setFechaNacimiento(LocalDate.parse(textFechaNacimiento.getText(), JEFormatter));
-        nuevo.setDireccion(textDireccion.getText());
-        nuevo.setLocalidad(Integer.parseInt(textLocalidad.getText()));
-        nuevo.setProvincia(Integer.parseInt(textProvincia.getText()));
-        nuevo.setTelefono(textTelefono.getText());
-        nuevo.setDeuda(Float.parseFloat(textDeuda.getText()));
-        
-        if (botonSi.isSelected() == true)
+        if(!textIdLibro1.getText().equals(""))
         {
-            nuevo.setSocio(true);
+            contadorLibros++;
+            costoTotal += Float.parseFloat(textPrecioLibro1.getText());
+            nuevo.setIdLibro1(Integer.parseInt(textIdLibro1.getText()));
         }
         else
         {
-            nuevo.setSocio(false);
+            nuevo.setIdLibro1(0);
         }
-        */
-        /*
-        System.out.println("El id es: " + nuevo.getId());
-        System.out.println("El nombre es: " + nuevo.getNombre());
-        System.out.println("El apellido es: " + nuevo.getApellido());
-        System.out.println("El dni es: " + nuevo.getDni());
-        System.out.println("La fecha de nacimiento es: " + nuevo.getFechaNacimiento());
-        System.out.println("La direccion es: " + nuevo.getDireccion());
-        System.out.println("La localidad es: " + nuevo.getLocalidad());
-        System.out.println("La provincia es: " + nuevo.getProvincia());
-        System.out.println("El telefono es: " + nuevo.getTelefono());
-        System.out.println("La deuda es: " + nuevo.getDeuda());
-        */
-        /*
+        if(!textIdLibro2.getText().equals(""))
+        {
+            contadorLibros++;
+            costoTotal += Float.parseFloat(textPrecioLibro2.getText());
+            nuevo.setIdLibro2(Integer.parseInt(textIdLibro2.getText()));
+        }
+        else
+        {
+            nuevo.setIdLibro2(0);
+        }
+        if(!textIdLibro3.getText().equals(""))
+        {
+            contadorLibros++;
+            costoTotal += Float.parseFloat(textPrecioLibro3.getText());
+            nuevo.setIdLibro3(Integer.parseInt(textIdLibro3.getText()));
+        }
+        else
+        {
+            nuevo.setIdLibro3(0);
+        }
+        if(!textIdLibro4.getText().equals(""))
+        {
+            contadorLibros++;
+            costoTotal += Float.parseFloat(textPrecioLibro4.getText());
+            nuevo.setIdLibro4(Integer.parseInt(textIdLibro4.getText()));
+        }
+        else
+        {
+            nuevo.setIdLibro4(0);
+        }
+        if(!textIdLibro5.getText().equals(""))
+        {
+            contadorLibros++;
+            costoTotal += Float.parseFloat(textPrecioLibro5.getText());
+            nuevo.setIdLibro5(Integer.parseInt(textIdLibro5.getText()));
+        }
+        else
+        {
+            nuevo.setIdLibro5(0);
+        }
+        
+        nuevo.setLectorId(Integer.parseInt(textId.getText()));
+        nuevo.setNombreLector(textNombre.getText());
+        nuevo.setApellidoLector(textApellido.getText());
+        nuevo.setCantidadLibros(contadorLibros);
+        nuevo.setCostoTotal(costoTotal);
+        DateTimeFormatter JEFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        nuevo.setFechaPrestamo(LocalDate.parse(textFechaPrestamo.getText(), JEFormatter));
+        nuevo.setFechaDevolucion(LocalDate.parse(textFechaDevolucion.getText(), JEFormatter));
+        nuevo.setEstado(true);
+        
         if (botonEstado.isSelected() == false){
             nuevo.Agregar();
         }
         else{
-            nuevo.setId(Integer.parseInt(textId.getText()));
+            nuevo.setId(Integer.parseInt(textIdPrestamo.getText()));
             nuevo.Modificar();
         }
-        */
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         // TODO add your handling code here:
     }//GEN-LAST:event_formWindowActivated
 
-    private void AutorLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AutorLibroActionPerformed
+    private void textAutorLibro1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textAutorLibro1ActionPerformed
         // TODO add your handling code here:
-        if(AutorLibro.getSelectedIndex() > -1)
-        {
-            String autorLibro = AutorLibro.getSelectedItem().toString();
-            listado.setAutor(autorLibro);
-            System.out.println("El autor seleccionado es: " + autorLibro);
-            NombreLibro.setSelectedIndex(0);
-            listado.ListadoNombresLibros(NombreLibro);
-        }
-    }//GEN-LAST:event_AutorLibroActionPerformed
+        autorLibroListado(textAutorLibro1, textNombreLibro1, textIdLibro1, textPrecioLibro1);
+    }//GEN-LAST:event_textAutorLibro1ActionPerformed
+
+    private void textNombreLibro1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textNombreLibro1ActionPerformed
+        // TODO add your handling code here:
+        nombreLibroListado(textNombreLibro1, textAutorLibro1, textIdLibro1, textPrecioLibro1);
+    }//GEN-LAST:event_textNombreLibro1ActionPerformed
+
+    private void textAutorLibro2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textAutorLibro2ActionPerformed
+        // TODO add your handling code here:
+        autorLibroListado(textAutorLibro2, textNombreLibro2, textIdLibro2, textPrecioLibro2);
+    }//GEN-LAST:event_textAutorLibro2ActionPerformed
+
+    private void textNombreLibro2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textNombreLibro2ActionPerformed
+        // TODO add your handling code here:
+        nombreLibroListado(textNombreLibro2, textAutorLibro2, textIdLibro2, textPrecioLibro2);
+    }//GEN-LAST:event_textNombreLibro2ActionPerformed
+
+    private void textAutorLibro4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textAutorLibro4ActionPerformed
+        // TODO add your handling code here:
+        autorLibroListado(textAutorLibro4, textNombreLibro4, textIdLibro4, textPrecioLibro4);
+    }//GEN-LAST:event_textAutorLibro4ActionPerformed
+
+    private void textNombreLibro4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textNombreLibro4ActionPerformed
+        // TODO add your handling code here:
+        nombreLibroListado(textNombreLibro4, textAutorLibro4, textIdLibro4, textPrecioLibro4);
+    }//GEN-LAST:event_textNombreLibro4ActionPerformed
+
+    private void textNombreLibro3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textNombreLibro3ActionPerformed
+        // TODO add your handling code here:
+        nombreLibroListado(textNombreLibro3, textAutorLibro3, textIdLibro3, textPrecioLibro3);
+    }//GEN-LAST:event_textNombreLibro3ActionPerformed
+
+    private void textAutorLibro3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textAutorLibro3ActionPerformed
+        // TODO add your handling code here:
+        autorLibroListado(textAutorLibro3, textNombreLibro3, textIdLibro3, textPrecioLibro3);
+    }//GEN-LAST:event_textAutorLibro3ActionPerformed
+
+    private void textAutorLibro5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textAutorLibro5ActionPerformed
+        // TODO add your handling code here:
+        autorLibroListado(textAutorLibro5, textNombreLibro5, textIdLibro5, textPrecioLibro5);
+    }//GEN-LAST:event_textAutorLibro5ActionPerformed
+
+    private void textNombreLibro5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textNombreLibro5ActionPerformed
+        // TODO add your handling code here:
+        nombreLibroListado(textNombreLibro5, textAutorLibro5, textIdLibro5, textPrecioLibro5);
+    }//GEN-LAST:event_textNombreLibro5ActionPerformed
+
+    private void textPrecioLibro1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textPrecioLibro1ActionPerformed
+        // TODO add your handling code here:
+        System.out.println("Cambio el valor");
+    }//GEN-LAST:event_textPrecioLibro1ActionPerformed
     
     public void Cargar(int idModificar, String nombreModificar, String apellidoModificar){
         textId.setText(String.valueOf(idModificar));
@@ -311,25 +643,50 @@ public class AgregarPrestamo extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> AutorLibro;
-    private javax.swing.JComboBox<String> NombreLibro;
+    private javax.swing.JRadioButton botonEstado;
     private javax.swing.ButtonGroup botonesSiNo;
     private com.github.lgooddatepicker.components.CalendarPanel calendarPanel1;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JTextField textApellido;
-    private javax.swing.JTextField textDeuda;
-    private javax.swing.JTextField textFechaNacimiento;
-    private javax.swing.JTextField textFechaNacimiento1;
+    private javax.swing.JComboBox<String> textAutorLibro1;
+    private javax.swing.JComboBox<String> textAutorLibro2;
+    private javax.swing.JComboBox<String> textAutorLibro3;
+    private javax.swing.JComboBox<String> textAutorLibro4;
+    private javax.swing.JComboBox<String> textAutorLibro5;
+    private javax.swing.JTextField textFechaDevolucion;
+    private javax.swing.JTextField textFechaPrestamo;
     private javax.swing.JTextField textId;
+    private javax.swing.JTextField textIdLibro1;
+    private javax.swing.JTextField textIdLibro2;
+    private javax.swing.JTextField textIdLibro3;
+    private javax.swing.JTextField textIdLibro4;
+    private javax.swing.JTextField textIdLibro5;
+    private javax.swing.JTextField textIdPrestamo;
     private javax.swing.JTextField textNombre;
+    private javax.swing.JComboBox<String> textNombreLibro1;
+    private javax.swing.JComboBox<String> textNombreLibro2;
+    private javax.swing.JComboBox<String> textNombreLibro3;
+    private javax.swing.JComboBox<String> textNombreLibro4;
+    private javax.swing.JComboBox<String> textNombreLibro5;
+    private javax.swing.JTextField textPrecioLibro1;
+    private javax.swing.JTextField textPrecioLibro2;
+    private javax.swing.JTextField textPrecioLibro3;
+    private javax.swing.JTextField textPrecioLibro4;
+    private javax.swing.JTextField textPrecioLibro5;
+    private javax.swing.JTextField textTotal;
     // End of variables declaration//GEN-END:variables
 
     //Se le coloca una imagen como fondo de pantalla
@@ -343,11 +700,156 @@ public class AgregarPrestamo extends javax.swing.JFrame {
             super.paint(g);
         }
     }
-    /*
-    private void cargarListado(JComboBox c){
-        Libro completar = new Libro();
+
+    public void Cargar(int idModificar, String nombreModificar, String apellidoModificar, int idPrestamoModificar, String fechaPrestamoModificar, 
+                       String fechaDevolucionModificar, String nombreLibro1Modificar, String nombreLibro2Modificar, 
+                       String nombreLibro3Modificar, String nombreLibro4Modificar, String nombreLibro5Modificar, String autorLibro1Modificar, 
+                       String autorLibro2Modificar, String autorLibro3Modificar, String autorLibro4Modificar, String autorLibro5Modificar, 
+                       Boolean estado)
+    { 
+        textId.setText(String.valueOf(idModificar));
+        textNombre.setText(nombreModificar);
+        textApellido.setText(apellidoModificar);
+        textIdPrestamo.setText(String.valueOf(idPrestamoModificar));
         
-        completar.Listado(model);
+        //Formato inicial.  
+        SimpleDateFormat formato1 = new SimpleDateFormat("yyyy-MM-dd");
         
-    }*/
+        try {
+            Date d = formato1.parse(fechaPrestamoModificar);
+            
+            //Aplica formato requerido.
+            formato1.applyPattern("dd/MM/yyyy");
+            String nuevoFormato = formato1.format(d);
+            textFechaPrestamo.setText(nuevoFormato);
+        } catch (ParseException ex) {
+            Logger.getLogger(AgregarPrestamo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        //Formato inicial.  
+        SimpleDateFormat formato2 = new SimpleDateFormat("yyyy-MM-dd");
+        
+        try {
+            Date d = formato2.parse(fechaDevolucionModificar);
+            
+            //Aplica formato requerido.
+            formato2.applyPattern("dd/MM/yyyy");
+            String nuevoFormato = formato2.format(d);
+            textFechaDevolucion.setText(nuevoFormato);
+        } catch (ParseException ex) {
+            Logger.getLogger(AgregarPrestamo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        textAutorLibro1.setSelectedItem(autorLibro1Modificar);
+        textNombreLibro1.setSelectedItem(nombreLibro1Modificar);
+        textAutorLibro2.setSelectedItem(autorLibro2Modificar);
+        textNombreLibro2.setSelectedItem(nombreLibro2Modificar);
+        textAutorLibro3.setSelectedItem(autorLibro3Modificar);
+        textNombreLibro3.setSelectedItem(nombreLibro3Modificar);
+        textAutorLibro4.setSelectedItem(autorLibro4Modificar);
+        textNombreLibro4.setSelectedItem(nombreLibro4Modificar);
+        textAutorLibro5.setSelectedItem(autorLibro5Modificar);
+        textNombreLibro5.setSelectedItem(nombreLibro5Modificar);
+        
+        if(estado == true){
+            botonEstado.setSelected(true);
+        }
+        else{
+            botonEstado.setSelected(false);
+        }
+    }
+    
+    
+    private void autorLibroListado(JComboBox AutorLibro, JComboBox NombreLibro, JTextField IdLibro, JTextField PrecioLibro) {                                            
+        // TODO add your handling code here:
+        float precioLibro1, precioLibro2, precioLibro3, precioLibro4, precioLibro5, precioTotal;
+        
+        if(AutorLibro.getSelectedIndex() > -1)
+        {
+            String autorLibro = AutorLibro.getSelectedItem().toString();
+            
+            if(autorLibro.equals("Seleccione autor")){
+                IdLibro.setText(null);
+                PrecioLibro.setText(null);
+                NombreLibro.removeAllItems();
+            }
+            else{
+                libros.setAutor(autorLibro);
+                libros.ListadoNombresLibros(NombreLibro);
+            }
+            
+            precioLibro1 = costoLibro(textPrecioLibro1);
+            precioLibro2 = costoLibro(textPrecioLibro2);
+            precioLibro3 = costoLibro(textPrecioLibro3);
+            precioLibro4 = costoLibro(textPrecioLibro4);
+            precioLibro5 = costoLibro(textPrecioLibro5);
+
+            precioTotal = precioLibro1 + precioLibro2 + precioLibro3 + precioLibro4 + precioLibro5;
+            
+            if(precioTotal == 0)
+            {
+                textTotal.setText("");
+            }
+            else
+            {
+               textTotal.setText(String.valueOf(precioTotal)); 
+            }    
+        }
+    }
+        
+    private void nombreLibroListado(JComboBox NombreLibro, JComboBox AutorLibro, JTextField IdLibro, JTextField PrecioLibro){
+        // TODO add your handling code here:       
+        float precioLibro1, precioLibro2, precioLibro3, precioLibro4, precioLibro5, precioTotal;
+        
+        if(NombreLibro.getSelectedIndex() > -1)
+        {
+            String autorLibro = AutorLibro.getSelectedItem().toString();
+            
+            if(autorLibro.equals("Seleccione autor")){
+                IdLibro.setText(null);
+                PrecioLibro.setText(null);
+            }
+            else{
+                String nombreLibro = NombreLibro.getSelectedItem().toString();
+                libros.setNombre(nombreLibro);
+                libros.IdLibro();
+                libros.PrecioLibro();
+                IdLibro.setText(String.valueOf(libros.getId()));
+                PrecioLibro.setText(String.valueOf(libros.getPrecio()));
+            }
+            
+            precioLibro1 = costoLibro(textPrecioLibro1);
+            precioLibro2 = costoLibro(textPrecioLibro2);
+            precioLibro3 = costoLibro(textPrecioLibro3);
+            precioLibro4 = costoLibro(textPrecioLibro4);
+            precioLibro5 = costoLibro(textPrecioLibro5);
+            
+            precioTotal = precioLibro1 + precioLibro2 + precioLibro3 + precioLibro4 + precioLibro5;
+            
+            if(precioTotal == 0)
+            {
+                textTotal.setText("");
+            }
+            else
+            {
+               textTotal.setText(String.valueOf(precioTotal)); 
+            }  
+        }
+    }
+    
+    private float costoLibro(JTextField PrecioLibro) {                                            
+        // TODO add your handling code here:
+        float precioLibro;
+                
+        if(PrecioLibro.getText().equals(""))
+        {
+            precioLibro = 0; 
+        }
+        else
+        {
+            precioLibro = Float.parseFloat(PrecioLibro.getText());
+        }
+        
+        return precioLibro;
+    }
 }

@@ -2,6 +2,8 @@ package Presentacion;
 
 import Negocio.Libro;
 import java.awt.Frame;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -13,13 +15,20 @@ import javax.swing.JOptionPane;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+import javax.swing.ImageIcon;
+import javax.swing.JPanel;
 
 public class Libros extends javax.swing.JFrame {
     
     /**
      * Creates new form Ventana
      */
+    
+    FondoPanel fondo = new FondoPanel();
+    
     public Libros() {
+        this.setContentPane(fondo);
+        
         initComponents();
         setTitle("Libros");
         setLocationRelativeTo(null);
@@ -332,4 +341,16 @@ public class Libros extends javax.swing.JFrame {
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField textId;
     // End of variables declaration//GEN-END:variables
+
+    //Se le coloca una imagen como fondo de pantalla
+    class FondoPanel extends JPanel{
+        private Image imagen;
+        
+        public void paint(Graphics g){
+            imagen = new ImageIcon(getClass().getResource("/Imagenes/Biblioteca.jpg")).getImage();
+            g.drawImage(imagen, 0, 0, getWidth(), getHeight(), this);
+            setOpaque(false);
+            super.paint(g);
+        }
+    }
 }

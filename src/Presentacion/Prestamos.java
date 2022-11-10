@@ -1,6 +1,5 @@
 package Presentacion;
 
-import Negocio.DetallePrestamo;
 import Negocio.Lector;
 import Negocio.Libro;
 import Negocio.Prestamo;
@@ -39,13 +38,11 @@ public class Prestamos extends javax.swing.JFrame {
         model1 = (DefaultTableModel) this.jTable1.getModel();
         model2 = (DefaultTableModel) this.jTable2.getModel();
         model3 = (DefaultTableModel) this.jTable3.getModel();
-        model4 = (DefaultTableModel) this.jTable4.getModel();
     }
     
     DefaultTableModel model1;
     DefaultTableModel model2;
     DefaultTableModel model3;
-    DefaultTableModel model4;
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -62,18 +59,13 @@ public class Prestamos extends javax.swing.JFrame {
         jButton5 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
         textId = new javax.swing.JTextField();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        jTable3 = new javax.swing.JTable();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jTable4 = new javax.swing.JTable();
+        jTable3 = new javax.swing.JTable();
         jScrollPane5 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(1920, 1080));
@@ -139,36 +131,6 @@ public class Prestamos extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "Prestamo ID", "Libro ID", "Nombre Libro", "Autor Libro", "Cantidad", "Precio Unitario", "Precio Total"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Object.class, java.lang.Object.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jTable3.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTable3MouseClicked(evt);
-            }
-        });
-        jScrollPane3.setViewportView(jTable3);
-
-        jTable4.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
                 "ID", "Nombre", "Autor", "Editorial", "Genero", "Coleccion", "ISBN", "Paginas", "Año Publicacion", "Descripcion", "Estado", "Precio"
             }
         ) {
@@ -187,21 +149,21 @@ public class Prestamos extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane4.setViewportView(jTable4);
+        jScrollPane4.setViewportView(jTable3);
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "ID", "Lector ID", "Nombre Lector", "Apellido Lector", "Cantidad Libros", "CostoTotal", "Fecha Prestamo", "Fecha Devolucion", "Estado"
+                "ID", "Fecha Prestamo", "Fecha Devolucion", "Cantidad Libros", "CostoTotal", "Estado"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Float.class, java.lang.String.class, java.lang.String.class, java.lang.Boolean.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Float.class, java.lang.Boolean.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -227,22 +189,16 @@ public class Prestamos extends javax.swing.JFrame {
         });
 
         jButton3.setText("Modificar");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("Eliminar");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
-            }
-        });
-
-        jButton6.setText("Agregar");
-
-        jButton8.setText("Modificar");
-
-        jButton9.setText("Eliminar");
-        jButton9.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton9ActionPerformed(evt);
             }
         });
 
@@ -253,30 +209,22 @@ public class Prestamos extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton5))
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 1821, Short.MAX_VALUE)
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 1821, Short.MAX_VALUE)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addComponent(textId, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jButton7)
-                                .addGap(18, 18, 18)
-                                .addComponent(jButton2)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.LEADING))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(textId, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton7)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton2)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton5, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -288,34 +236,23 @@ public class Prestamos extends javax.swing.JFrame {
                     .addComponent(jButton7)
                     .addComponent(textId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
+                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jButton1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton4)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addComponent(jButton6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton8)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton9)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
-                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(14, 14, 14))
+                        .addComponent(jButton4)
+                        .addGap(76, 76, 76)))
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton5)
+                .addGap(17, 17, 17))
         );
 
         pack();
@@ -335,10 +272,14 @@ public class Prestamos extends javax.swing.JFrame {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here: 
-        Lector refrescar = new Lector();                    //Se crea el objeto refrescar correspondiente a la clase Lector
+        Lector refrescar1 = new Lector();                    //Se crea el objeto refrescar correspondiente a la clase Lector
+        Libro refrescar2 = new Libro();                    //Se crea el objeto refrescar correspondiente a la clase Libro
+        Prestamo refrescar3 = new Prestamo();                    //Se crea el objeto refrescar correspondiente a la clase Prestamo
         
-        refrescar.Conectar();                               //Se llama al método Conectar perteneciente al objeto refrescar de la clase Lector
-        refrescar.Refrescar(model1);                         //Se llama al método Refrescar del objeto refrescar de la clase Lector
+        refrescar1.Conectar();                               //Se llama al método Conectar perteneciente al objeto refrescar de la clase Lector
+        refrescar1.Refrescar(model1);                         //Se llama al método Refrescar del objeto refrescar de la clase Lector
+        refrescar2.Conectar();                               //Se llama al método Conectar perteneciente al objeto refrescar de la clase Libro
+        refrescar3.Conectar();                               //Se llama al método Conectar perteneciente al objeto refrescar de la clase Prestamo
     }//GEN-LAST:event_formWindowOpened
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -370,23 +311,27 @@ public class Prestamos extends javax.swing.JFrame {
 
     private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked
         // TODO add your handling code here:
-        int filaSeleccionada2 = jTable2.getSelectedRow();
-        int idBuscar2 = Integer.parseInt(jTable2.getValueAt(filaSeleccionada2, 0).toString());
+        int filaSeleccionada = jTable1.getSelectedRow();
+        int idLectorBuscar = Integer.parseInt(jTable1.getValueAt(filaSeleccionada, 0).toString());
+        filaSeleccionada = jTable2.getSelectedRow();
+        int idPrestamoBuscar = Integer.parseInt(jTable2.getValueAt(filaSeleccionada, 0).toString());
+        /*
+        System.out.println("El ID Lector a buscar es: " + idLectorBuscar);
+        System.out.println("El ID Prestamo a buscar es: " + idPrestamoBuscar);
+        */
+        Prestamo buscar = new Prestamo(idPrestamoBuscar, idLectorBuscar);
+        buscar.BuscarLibros(model3); 
+        /*
+        System.out.println("IDLibro1: " + buscar.getIdLibro1());
+        System.out.println("IDLibro2: " + buscar.getIdLibro2());
+        System.out.println("IDLibro3: " + buscar.getIdLibro3());
+        System.out.println("IDLibro4: " + buscar.getIdLibro4());
+        System.out.println("IDLibro5: " + buscar.getIdLibro5());                                              //Se llama al método Buscar del objeto buscar de la clase DetallePrestamo
+        */
         
-        DetallePrestamo buscar = new DetallePrestamo(idBuscar2);
-        //System.out.println("El ID a buscar es: " + idBuscar);
-        buscar.Buscar(model3);                                                //Se llama al método Buscar del objeto buscar de la clase DetallePrestamo
+        Libro libros = new Libro();
+        libros.BuscarLibros(model3, buscar.getIdLibro1(), buscar.getIdLibro2(), buscar.getIdLibro3(), buscar.getIdLibro4(), buscar.getIdLibro5());
     }//GEN-LAST:event_jTable2MouseClicked
-
-    private void jTable3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable3MouseClicked
-        // TODO add your handling code here:
-        int filaSeleccionada3 = jTable3.getSelectedRow();
-        int idBuscar3 = Integer.parseInt(jTable3.getValueAt(filaSeleccionada3, 2).toString());
-        
-        Libro buscar = new Libro(idBuscar3);
-        //System.out.println("El ID a buscar es: " + idBuscar);
-        buscar.Buscar(model4);                                                //Se llama al método Buscar del objeto buscar de la clase DetallePrestamo
-    }//GEN-LAST:event_jTable3MouseClicked
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
@@ -405,24 +350,6 @@ public class Prestamos extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "No se selecciono ninguna fila o no existen datos cargados en la tabla.");
         }
     }//GEN-LAST:event_jButton4ActionPerformed
-
-    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        // TODO add your handling code here:
-        DetallePrestamo eliminar = new DetallePrestamo();
-        
-        int filaSeleccionada = jTable3.getSelectedRow();
-        
-        if(filaSeleccionada >= 0){
-            String idEliminar = jTable3.getValueAt(filaSeleccionada, 0).toString();
-            
-            model3.removeRow(filaSeleccionada);
-            eliminar.Eliminar(idEliminar);
-        }
-        else
-        {
-            JOptionPane.showMessageDialog(null, "No se selecciono ninguna fila o no existen datos cargados en la tabla.");
-        }
-    }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
@@ -458,6 +385,223 @@ public class Prestamos extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "No se selecciono ninguna fila o no existen datos cargados en la tabla.");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        //Al oprimir el botón "Modificar", nos dirige a la ventana "AgregarPrestamo"
+        AgregarPrestamo modificar = new AgregarPrestamo();
+        
+        int filaSeleccionadaTabla1 = jTable1.getSelectedRow();
+        int filaSeleccionadaTabla2 = jTable2.getSelectedRow();
+        int libro1 = 0;
+        int libro2 = 1;
+        int libro3 = 2;
+        int libro4 = 3;
+        int libro5 = 4;
+        String autorLibro1Modificar = "";
+        String nombreLibro1Modificar = "";
+        String autorLibro2Modificar = "";
+        String nombreLibro2Modificar = "";
+        String autorLibro3Modificar = "";
+        String nombreLibro3Modificar = "";
+        String autorLibro4Modificar = "";
+        String nombreLibro4Modificar = "";
+        String autorLibro5Modificar = "";
+        String nombreLibro5Modificar = "";
+        
+        if(filaSeleccionadaTabla2 >= 0){
+            int idLectorModificar = Integer.parseInt(jTable1.getValueAt(filaSeleccionadaTabla1, 0).toString());
+            String nombreLectorModificar = jTable1.getValueAt(filaSeleccionadaTabla1, 1).toString();
+            String apellidoLectorModificar = jTable1.getValueAt(filaSeleccionadaTabla1, 2).toString();
+            int idPrestamoModificar = Integer.parseInt(jTable2.getValueAt(filaSeleccionadaTabla2, 0).toString());
+            String fechaPrestamoModificar = jTable2.getValueAt(filaSeleccionadaTabla2, 1).toString();
+            String fechaDevolucionModificar = jTable2.getValueAt(filaSeleccionadaTabla2, 2).toString();
+            int cantidadLibros = Integer.parseInt(jTable2.getValueAt(filaSeleccionadaTabla2, 3).toString());
+            /*
+            float costoTotalModificar = Float.parseFloat(jTable2.getValueAt(filaSeleccionadaTabla2, 4).toString());
+            int idLibro1Modificar = Integer.parseInt(jTable3.getValueAt(libro1, 0).toString());
+            int idLibro2Modificar = Integer.parseInt(jTable3.getValueAt(libro2, 0).toString());
+            int idLibro3Modificar = Integer.parseInt(jTable3.getValueAt(libro3, 0).toString());
+            int idLibro4Modificar = Integer.parseInt(jTable3.getValueAt(libro4, 0).toString());
+            int idLibro5Modificar = Integer.parseInt(jTable3.getValueAt(libro5, 0).toString());
+            */
+            switch (cantidadLibros) {
+                case 1:
+                    autorLibro1Modificar = jTable3.getValueAt(libro1, 2).toString();
+                    nombreLibro1Modificar = jTable3.getValueAt(libro1, 1).toString();
+                    break;
+                case 2:
+                    autorLibro1Modificar = jTable3.getValueAt(libro1, 2).toString();
+                    nombreLibro1Modificar = jTable3.getValueAt(libro1, 1).toString();
+                    autorLibro2Modificar = jTable3.getValueAt(libro2, 2).toString();
+                    nombreLibro2Modificar = jTable3.getValueAt(libro2, 1).toString();
+                    break;
+                case 3:
+                    autorLibro1Modificar = jTable3.getValueAt(libro1, 2).toString();
+                    nombreLibro1Modificar = jTable3.getValueAt(libro1, 1).toString();
+                    autorLibro2Modificar = jTable3.getValueAt(libro2, 2).toString();
+                    nombreLibro2Modificar = jTable3.getValueAt(libro2, 1).toString();
+                    autorLibro3Modificar = jTable3.getValueAt(libro3, 2).toString();
+                    nombreLibro3Modificar = jTable3.getValueAt(libro3, 1).toString();
+                    break;
+                case 4:
+                    autorLibro1Modificar = jTable3.getValueAt(libro1, 2).toString();
+                    nombreLibro1Modificar = jTable3.getValueAt(libro1, 1).toString();
+                    autorLibro2Modificar = jTable3.getValueAt(libro2, 2).toString();
+                    nombreLibro2Modificar = jTable3.getValueAt(libro2, 1).toString();
+                    autorLibro3Modificar = jTable3.getValueAt(libro3, 2).toString();
+                    nombreLibro3Modificar = jTable3.getValueAt(libro3, 1).toString();
+                    autorLibro4Modificar = jTable3.getValueAt(libro4, 2).toString();
+                    nombreLibro4Modificar = jTable3.getValueAt(libro4, 1).toString();
+                    break;
+                case 5:
+                    autorLibro1Modificar = jTable3.getValueAt(libro1, 2).toString();
+                    nombreLibro1Modificar = jTable3.getValueAt(libro1, 1).toString();
+                    autorLibro2Modificar = jTable3.getValueAt(libro2, 2).toString();
+                    nombreLibro2Modificar = jTable3.getValueAt(libro2, 1).toString();
+                    autorLibro3Modificar = jTable3.getValueAt(libro3, 2).toString();
+                    nombreLibro3Modificar = jTable3.getValueAt(libro3, 1).toString();
+                    autorLibro4Modificar = jTable3.getValueAt(libro4, 2).toString();
+                    nombreLibro4Modificar = jTable3.getValueAt(libro4, 1).toString();
+                    autorLibro5Modificar = jTable3.getValueAt(libro5, 2).toString();
+                    nombreLibro5Modificar = jTable3.getValueAt(libro5, 1).toString();
+                    break;
+                default:
+                    throw new AssertionError();
+            }
+            /*
+            String autorLibro1Modificar = jTable3.getValueAt(libro1, 2).toString();
+            String nombreLibro1Modificar = jTable3.getValueAt(libro1, 1).toString();
+            String autorLibro2Modificar = jTable3.getValueAt(libro2, 2).toString();
+            String nombreLibro2Modificar = jTable3.getValueAt(libro2, 1).toString();
+            String autorLibro3Modificar = jTable3.getValueAt(libro3, 2).toString();
+            String nombreLibro3Modificar = jTable3.getValueAt(libro3, 1).toString();
+            String autorLibro4Modificar = jTable3.getValueAt(libro4, 2).toString();
+            String nombreLibro4Modificar = jTable3.getValueAt(libro4, 1).toString();
+            String autorLibro5Modificar = jTable3.getValueAt(libro5, 2).toString();
+            String nombreLibro5Modificar = jTable3.getValueAt(libro5, 1).toString();
+            */
+            /*
+            float precioLibro1Modificar = Float.parseFloat(jTable3.getValueAt(libro1, 11).toString());
+            float precioLibro2Modificar = Float.parseFloat(jTable3.getValueAt(libro2, 11).toString());
+            float precioLibro3Modificar = Float.parseFloat(jTable3.getValueAt(libro3, 11).toString());
+            float precioLibro4Modificar = Float.parseFloat(jTable3.getValueAt(libro4, 11).toString());
+            float precioLibro5Modificar = Float.parseFloat(jTable3.getValueAt(libro5, 11).toString());
+            */
+            /*
+            System.out.println("idLectorModificar:" + idLectorModificar);
+            System.out.println("nombreLectorModificar:" + nombreLectorModificar);
+            System.out.println("apellidoLectorModificar:" + apellidoLectorModificar);
+            System.out.println("fechaPrestamoModificar:" + fechaPrestamoModificar);
+            System.out.println("fechaDevolucionModificar:" + fechaDevolucionModificar);
+            */
+            /*
+            System.out.println("costoTotalModificar:" + costoTotalModificar);
+            System.out.println("idLibro1Modificar:" + idLibro1Modificar);
+            System.out.println("idLibro2Modificar:" + idLibro2Modificar);
+            System.out.println("idLibro3Modificar:" + idLibro3Modificar);
+            System.out.println("idLibro4Modificar:" + idLibro4Modificar);
+            System.out.println("idLibro5Modificar:" + idLibro5Modificar);
+            */
+            /*
+            System.out.println("nombreLibro1Modificar:" + nombreLibro1Modificar);
+            System.out.println("nombreLibro2Modificar:" + nombreLibro2Modificar);
+            System.out.println("nombreLibro3Modificar:" + nombreLibro3Modificar);
+            System.out.println("nombreLibro4Modificar:" + nombreLibro4Modificar);
+            System.out.println("nombreLibro5Modificar:" + nombreLibro5Modificar);
+            System.out.println("autorLibro1Modificar:" + autorLibro1Modificar);
+            System.out.println("autorLibro2Modificar:" + autorLibro2Modificar);
+            System.out.println("autorLibro3Modificar:" + autorLibro3Modificar);
+            System.out.println("autorLibro4Modificar:" + autorLibro4Modificar);
+            System.out.println("autorLibro5Modificar:" + autorLibro5Modificar);
+            */
+            /*
+            System.out.println("precioLibro1Modificar:" + precioLibro1Modificar);
+            System.out.println("precioLibro2Modificar:" + precioLibro2Modificar);
+            System.out.println("precioLibro3Modificar:" + precioLibro3Modificar);
+            System.out.println("precioLibro4Modificar:" + precioLibro4Modificar);
+            System.out.println("precioLibro5Modificar:" + precioLibro5Modificar);
+            */
+            
+            modificar.setVisible(true);
+            /*modificar.Cargar(idLectorModificar, nombreLectorModificar, apellidoLectorModificar, fechaPrestamoModificar, fechaDevolucionModificar, 
+                             costoTotalModificar, idLibro1Modificar, idLibro2Modificar, idLibro3Modificar, idLibro4Modificar, idLibro5Modificar, 
+                             nombreLibro1Modificar, nombreLibro2Modificar, nombreLibro3Modificar, nombreLibro4Modificar, nombreLibro5Modificar, 
+                             autorLibro1Modificar, autorLibro2Modificar, autorLibro3Modificar, autorLibro4Modificar, autorLibro5Modificar, 
+                             precioLibro1Modificar, precioLibro2Modificar, precioLibro3Modificar, precioLibro4Modificar, precioLibro5Modificar, 
+                             true);
+            */
+            
+            modificar.Cargar(idLectorModificar, nombreLectorModificar, apellidoLectorModificar, idPrestamoModificar, fechaPrestamoModificar, 
+                            fechaDevolucionModificar, nombreLibro1Modificar, nombreLibro2Modificar, nombreLibro3Modificar, nombreLibro4Modificar, 
+                            nombreLibro5Modificar, autorLibro1Modificar, autorLibro2Modificar, autorLibro3Modificar, autorLibro4Modificar, 
+                            autorLibro5Modificar, true);
+            /*
+            int idPrestamoBuscar = Integer.parseInt(jTable2.getValueAt(filaSeleccionadaTabla2, 0).toString());
+            
+            
+            System.out.println("El ID Lector a buscar es: " + idLectorModificar);
+            System.out.println("El ID Prestamo a buscar es: " + idPrestamoBuscar);
+            Prestamo buscar = new Prestamo(idPrestamoBuscar, idLectorModificar);
+            buscar.BuscarLibros(model3); 
+            System.out.println("IDLibro1: " + buscar.getIdLibro1());
+            System.out.println("IDLibro2: " + buscar.getIdLibro2());
+            System.out.println("IDLibro3: " + buscar.getIdLibro3());
+            System.out.println("IDLibro4: " + buscar.getIdLibro4());
+            System.out.println("IDLibro5: " + buscar.getIdLibro5());                                              //Se llama al método Buscar del objeto buscar de la clase DetallePrestamo
+            
+            Libro libros = new Libro();
+            libros.BuscarLibros(model3, buscar.getIdLibro1(), buscar.getIdLibro2(), buscar.getIdLibro3(), buscar.getIdLibro4(), buscar.getIdLibro5());
+            */
+            /*    
+            int filaSeleccionada = jTable1.getSelectedRow();
+            int idLectorBuscar = Integer.parseInt(jTable1.getValueAt(filaSeleccionada, 0).toString());
+            filaSeleccionada = jTable2.getSelectedRow();
+            //int idPrestamoBuscar = Integer.parseInt(jTable2.getValueAt(filaSeleccionada, 0).toString());
+
+            System.out.println("El ID Lector a buscar es: " + idLectorBuscar);
+            System.out.println("El ID Prestamo a buscar es: " + idPrestamoBuscar);
+            Prestamo buscar = new Prestamo(idPrestamoBuscar, idLectorBuscar);
+            buscar.BuscarLibros(model3); 
+            System.out.println("IDLibro1: " + buscar.getIdLibro1());
+            System.out.println("IDLibro2: " + buscar.getIdLibro2());
+            System.out.println("IDLibro3: " + buscar.getIdLibro3());
+            System.out.println("IDLibro4: " + buscar.getIdLibro4());
+            System.out.println("IDLibro5: " + buscar.getIdLibro5());                                              //Se llama al método Buscar del objeto buscar de la clase DetallePrestamo
+
+            Libro libros = new Libro();
+            libros.BuscarLibros(model3, buscar.getIdLibro1(), buscar.getIdLibro2(), buscar.getIdLibro3(), buscar.getIdLibro4(), buscar.getIdLibro5());
+            */
+        
+            /*
+            String direccionModificar = jTable1.getValueAt(filaSeleccionada, 5).toString();
+            int localidadModificar = Integer.parseInt(jTable1.getValueAt(filaSeleccionada, 6).toString());
+            int provinciaModificar = Integer.parseInt(jTable1.getValueAt(filaSeleccionada, 7).toString());
+            String telefonoModificar = jTable1.getValueAt(filaSeleccionada, 8).toString();
+            Boolean socioModificar = Boolean.parseBoolean(jTable1.getValueAt(filaSeleccionada, 9).toString());
+            float deudaModificar = Float.parseFloat(jTable1.getValueAt(filaSeleccionada, 10).toString());
+            */
+            /*
+            System.out.println("ID: " + idModificar);
+            System.out.println("Nombre: " + nombreModificar);
+            System.out.println("Apellido: " + apellidoModificar);
+            System.out.println("DNI: " + dniModificar);
+            System.out.println("Fecha Nacimiento: " + fechaNacimientoModificar);
+            System.out.println("Direccion: " + direccionModificar);
+            System.out.println("Localidad: " + localidadModificar);
+            System.out.println("Provincia: " + provinciaModificar);
+            System.out.println("Telefono: " + telefonoModificar);
+            System.out.println("Socio: " + socioModificar);
+            System.out.println("Deuda: " + deudaModificar);
+            */
+            
+            
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "No se selecciono ninguna fila o no existen datos cargados en la tabla.");
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -503,18 +647,13 @@ public class Prestamos extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     private javax.swing.JTable jTable3;
-    private javax.swing.JTable jTable4;
     private javax.swing.JTextField textId;
     // End of variables declaration//GEN-END:variables
 

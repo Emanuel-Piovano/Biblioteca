@@ -69,6 +69,11 @@ public class Menu extends javax.swing.JFrame {
 
         jButton9.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jButton9.setText("Provincia");
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
 
         jButton8.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jButton8.setText("Prestamos");
@@ -155,6 +160,14 @@ public class Menu extends javax.swing.JFrame {
         obj.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        // TODO add your handling code here:
+        //Al oprimir el botón "Provincias", nos dirige a la mencionada ventana
+        Provincias obj = new Provincias();
+        obj.setVisible(true);
+        dispose();  
+    }//GEN-LAST:event_jButton9ActionPerformed
 
     /**
      * @param args the command line arguments

@@ -3,12 +3,14 @@ package Presentacion;
 import Negocio.Lector;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class AgregarLector extends javax.swing.JFrame {
@@ -73,31 +75,55 @@ public class AgregarLector extends javax.swing.JFrame {
         });
 
         jLabel1.setText("Nombre");
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
 
         jLabel2.setText("Apellido");
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
 
         jLabel3.setText("DNI");
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
 
         jLabel4.setText("Fecha de nacimiento");
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
 
         jLabel5.setText("Dirección");
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
 
         jLabel6.setText("Socio");
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
 
         jLabel7.setText("Localidad");
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
 
         jLabel8.setText("Provincia");
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
 
         jLabel9.setText("Teléfono");
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
 
         jLabel10.setText("Deuda");
+        jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
 
         textFechaNacimiento.setText("dd/mm/aaaa");
 
         botonesSiNo.add(botonSi);
+        botonSi.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        botonSi.setForeground(new java.awt.Color(255, 255, 255));
         botonSi.setText("Si");
 
         botonesSiNo.add(botonNo);
+        botonNo.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        botonNo.setForeground(new java.awt.Color(255, 255, 255));
         botonNo.setText("No");
 
         jButton1.setText("Guardar");
@@ -115,11 +141,17 @@ public class AgregarLector extends javax.swing.JFrame {
         });
 
         jLabel11.setText("Nuevo lector");
-        jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
 
         botonEstado.setText("Estado");
+        botonEstado.setEnabled(false);
+        botonEstado.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        botonEstado.setForeground(new java.awt.Color(255, 255, 255));
 
         jLabel12.setText("ID");
+        jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
 
         textId.setEditable(false);
 
@@ -236,12 +268,17 @@ public class AgregarLector extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         Lector nuevo = new Lector();
-        
+
         nuevo.setNombre(textNombre.getText());
         nuevo.setApellido(textApellido.getText());
         nuevo.setDni(textDni.getText());
+        
+
         DateTimeFormatter JEFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         nuevo.setFechaNacimiento(LocalDate.parse(textFechaNacimiento.getText(), JEFormatter));
+        //System.out.println(textFechaNacimiento.getText());
+        //System.out.println(LocalDate.parse(textFechaNacimiento.getText(), JEFormatter));
+        
         nuevo.setDireccion(textDireccion.getText());
         nuevo.setLocalidad(Integer.parseInt(textLocalidad.getText()));
         nuevo.setProvincia(Integer.parseInt(textProvincia.getText()));
@@ -256,18 +293,7 @@ public class AgregarLector extends javax.swing.JFrame {
         {
             nuevo.setSocio(false);
         }
-        /*
-        System.out.println("El id es: " + nuevo.getId());
-        System.out.println("El nombre es: " + nuevo.getNombre());
-        System.out.println("El apellido es: " + nuevo.getApellido());
-        System.out.println("El dni es: " + nuevo.getDni());
-        System.out.println("La fecha de nacimiento es: " + nuevo.getFechaNacimiento());
-        System.out.println("La direccion es: " + nuevo.getDireccion());
-        System.out.println("La localidad es: " + nuevo.getLocalidad());
-        System.out.println("La provincia es: " + nuevo.getProvincia());
-        System.out.println("El telefono es: " + nuevo.getTelefono());
-        System.out.println("La deuda es: " + nuevo.getDeuda());
-        */
+
         if (botonEstado.isSelected() == false){
             nuevo.Agregar();
         }
@@ -286,7 +312,21 @@ public class AgregarLector extends javax.swing.JFrame {
         textNombre.setText(nombreModificar);
         textApellido.setText(apellidoModificar);
         textDni.setText(dniModificar);
-        textFechaNacimiento.setText(fechaNacimientoModificar);
+        
+        //Formato inicial.  
+        SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+        String fechaInicio  = fechaNacimientoModificar;
+        try {
+            Date d = formato.parse(fechaInicio);
+            
+            //Aplica formato requerido.
+            formato.applyPattern("dd/MM/yyyy");
+            String nuevoFormato = formato.format(d);
+            textFechaNacimiento.setText(nuevoFormato);
+        } catch (ParseException ex) {
+            Logger.getLogger(AgregarLector.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
         textDireccion.setText(direccionModificar);
         textLocalidad.setText(String.valueOf(localidadModificar));
         textProvincia.setText(String.valueOf(provinciaModificar));

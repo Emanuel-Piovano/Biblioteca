@@ -1,15 +1,15 @@
 package Presentacion;
 
 import Negocio.Lector;
+import Negocio.Provincia;
 import java.awt.Frame;
 import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
-public class Lectores extends javax.swing.JFrame {
+public class Provincias extends javax.swing.JFrame {
     
     /**
      * Creates new form Ventana
@@ -17,11 +17,11 @@ public class Lectores extends javax.swing.JFrame {
     
     FondoPanel fondo = new FondoPanel();
     
-    public Lectores() {
+    public Provincias() {
         this.setContentPane(fondo);
         
         initComponents();
-        setTitle("Lectores");
+        setTitle("Provincias");
         setLocationRelativeTo(null);
         this.setExtendedState(Frame.MAXIMIZED_BOTH);
         model = (DefaultTableModel) this.jTable1.getModel();
@@ -41,10 +41,7 @@ public class Lectores extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
         textId = new javax.swing.JTextField();
 
@@ -67,14 +64,14 @@ public class Lectores extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "Nombre", "Apellido", "DNI", "Fecha Nacimiento", "Dirección", "Localidad", "Provincia", "Teléfono", "Socio", "Deuda"
+                "ID", "Nombre Provincia"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.Boolean.class, java.lang.Float.class
+                java.lang.Integer.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, false
+                false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -86,32 +83,15 @@ public class Lectores extends javax.swing.JFrame {
             }
         });
         jScrollPane1.setViewportView(jTable1);
-
-        jButton1.setText("Agregar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(0).setPreferredWidth(10);
+            jTable1.getColumnModel().getColumn(1).setPreferredWidth(100);
+        }
 
         jButton5.setText("Salir");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
-            }
-        });
-
-        jButton3.setText("Eliminar");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-
-        jButton6.setText("Modificar");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
             }
         });
 
@@ -132,12 +112,7 @@ public class Lectores extends javax.swing.JFrame {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1908, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton2)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton6))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(textId, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -150,11 +125,7 @@ public class Lectores extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(33, 33, 33)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3)
-                    .addComponent(jButton6)
-                    .addComponent(jButton1))
+                .addComponent(jButton2)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 576, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -175,27 +146,19 @@ public class Lectores extends javax.swing.JFrame {
     
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        Lector refrescar = new Lector();                    //Se crea el objeto refrescar correspondiente a la clase Lector
+        Provincia refrescar = new Provincia();                    //Se crea el objeto refrescar correspondiente a la clase Provincia
         
-        refrescar.Refrescar(model);                         //Se llama al método Refrescar del objeto refrescar de la clase Lector
+        refrescar.Refrescar(model);                         //Se llama al método Refrescar del objeto refrescar de la clase Provincia
         textId.setText("");                                 //Borra lo escrito en el buscador por Id
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here: 
-        Lector refrescar = new Lector();                    //Se crea el objeto refrescar correspondiente a la clase Lector
+        Provincia refrescar = new Provincia();                    //Se crea el objeto refrescar correspondiente a la clase Provincia
         
-        refrescar.Conectar();                               //Se llama al método Conectar perteneciente al objeto refrescar de la clase Lector
-        refrescar.Refrescar(model);                         //Se llama al método Refrescar del objeto refrescar de la clase Lector
+        refrescar.Conectar();                               //Se llama al método Conectar perteneciente al objeto refrescar de la clase Provincia
+        refrescar.Refrescar(model);                         //Se llama al método Refrescar del objeto refrescar de la clase Provincia
     }//GEN-LAST:event_formWindowOpened
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        //Al oprimir el botón "Agregar", nos dirige a la ventana "AgregarLector"
-        AgregarLector obj = new AgregarLector();
-        
-        obj.setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
@@ -205,59 +168,11 @@ public class Lectores extends javax.swing.JFrame {
         dispose();   
     }//GEN-LAST:event_jButton5ActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-        Lector eliminar = new Lector();
-        
-        int filaSeleccionada = jTable1.getSelectedRow();
-        
-        if(filaSeleccionada >= 0){
-            String idEliminar = jTable1.getValueAt(filaSeleccionada, 0).toString();
-            
-            model.removeRow(filaSeleccionada);
-            eliminar.Eliminar(idEliminar);
-        }
-        else
-        {
-            JOptionPane.showMessageDialog(null, "No se selecciono ninguna fila o no existen datos cargados en la tabla.");
-        }
-    }//GEN-LAST:event_jButton3ActionPerformed
-
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        // TODO add your handling code here:
-        //Al oprimir el botón "Modificar", nos dirige a la ventana "AgregarLector"
-        AgregarLector obj = new AgregarLector();
-        
-        int filaSeleccionada = jTable1.getSelectedRow();
-        
-        if(filaSeleccionada >= 0){
-            int idModificar = Integer.parseInt(jTable1.getValueAt(filaSeleccionada, 0).toString());
-            String nombreModificar = jTable1.getValueAt(filaSeleccionada, 1).toString();
-            String apellidoModificar = jTable1.getValueAt(filaSeleccionada, 2).toString();
-            String dniModificar = jTable1.getValueAt(filaSeleccionada, 3).toString();
-            String fechaNacimientoModificar = jTable1.getValueAt(filaSeleccionada, 4).toString();
-            String direccionModificar = jTable1.getValueAt(filaSeleccionada, 5).toString();
-            int localidadModificar = Integer.parseInt(jTable1.getValueAt(filaSeleccionada, 6).toString());
-            int provinciaModificar = Integer.parseInt(jTable1.getValueAt(filaSeleccionada, 7).toString());
-            String telefonoModificar = jTable1.getValueAt(filaSeleccionada, 8).toString();
-            Boolean socioModificar = Boolean.parseBoolean(jTable1.getValueAt(filaSeleccionada, 9).toString());
-            float deudaModificar = Float.parseFloat(jTable1.getValueAt(filaSeleccionada, 10).toString());
-            
-            obj.setVisible(true);
-            obj.Cargar(idModificar, nombreModificar, apellidoModificar, dniModificar, fechaNacimientoModificar, direccionModificar, localidadModificar, provinciaModificar, telefonoModificar, socioModificar, deudaModificar, true);
-        }
-        else
-        {
-            JOptionPane.showMessageDialog(null, "No se selecciono ninguna fila o no existen datos cargados en la tabla.");
-        }
-      
-    }//GEN-LAST:event_jButton6ActionPerformed
-
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         // TODO add your handling code here:
         int idBuscar = Integer.parseInt(textId.getText());
         
-        Lector buscar = new Lector(idBuscar);
+        Provincia buscar = new Provincia(idBuscar);
 
         buscar.Buscar(model);                                                //Se llama al método Refrescar del objeto dt de la clase Datos
     }//GEN-LAST:event_jButton7ActionPerformed
@@ -279,31 +194,30 @@ public class Lectores extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Lectores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Provincias.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Lectores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Provincias.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Lectores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Provincias.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Lectores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Provincias.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Lectores().setVisible(true);
+                new Provincias().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;

@@ -271,22 +271,64 @@ public class Libro {
         }
     }
     
+    //Método para buscar un Id
+    public void BuscarLibros(DefaultTableModel model, int idLibro1, int idLibro2, int idLibro3, int idLibro4, int idLibro5){
+        Datos dt = new Datos();
+        
+        String buscarLibro = ("SELECT * FROM Libros WHERE ID = " + idLibro1 + " OR ID = " + idLibro2 + " OR ID = " + idLibro3 + " OR ID = " + idLibro4 + " OR ID = " + idLibro5);
+
+        model.setRowCount(0);
+        ResultSet result = null;
+
+        try {
+            result = dt.Buscar(model, buscarLibro, result);
+
+            while (result.next()) {
+                model.addRow(
+                        new Object[]{
+                            this.id = result.getInt("ID"),
+                            this.nombre = result.getString("Nombre"),
+                            this.autor = result.getString("Autor"),
+                            this.editorial = result.getString("Editorial"),
+                            this.genero = result.getString("Genero"),
+                            this.coleccion = result.getString("Coleccion"),
+                            this.isbn = result.getString("ISBN"),
+                            this.paginas = result.getInt("Paginas"),
+                            this.anioPublicacion = result.getInt("AnioPublicacion"),
+                            this.descripcion = result.getString("Descripcion"),
+                            this.estado = result.getBoolean("Estado"),
+                            this.precio = result.getFloat("Precio")
+                        }
+                );
+            }
+
+        } catch (Exception x) {
+            JOptionPane.showMessageDialog(null, x.getMessage().toString());
+        }
+    }
+    
     //Método para listar los autores de los libros un JComboBox
     public void ListadoAutoresLibros(JComboBox autorLibros){
         Datos dt = new Datos();
         
-        String autorLibro = ("SELECT Autor FROM Libros");
+        String autorLibro = ("SELECT DISTINCT Autor FROM Libros");
 
-        ResultSet result = null;
+        ResultSet resultListadoAutoresLibros = null;
 
         try {
-            result = dt.Buscar(autorLibro, result);
+            //dt.Conectar();
+            
+            resultListadoAutoresLibros = dt.Buscar(autorLibro, resultListadoAutoresLibros);
             autorLibros.addItem("Seleccione autor");
             
-            while (result.next()) {
-                autorLibros.addItem(result.getString("Autor"));
+            while (resultListadoAutoresLibros.next()) {
+                autorLibros.addItem(resultListadoAutoresLibros.getString("Autor"));
             }
-
+            
+            //resultListadoAutoresLibros.close();
+            
+            //dt.Desconectar(resultListadoAutoresLibros);
+            
         } catch (SQLException x) {
             JOptionPane.showMessageDialog(null, x.getMessage());
         }
@@ -296,18 +338,67 @@ public class Libro {
     public void ListadoNombresLibros(JComboBox nombreLibros){
         Datos dt = new Datos();
         
-        String nombreLibro = ("SELECT Nombre FROM Libros WHERE Autor = \"" + autor + "\"");
+        nombreLibros.removeAllItems();
+        
+        String nombreLibro = ("SELECT DISTINCT Nombre FROM Libros WHERE Autor = \"" + autor + "\"");
 
-        ResultSet result = null;
-        //ResultSet result;
+        ResultSet resultListadoNombresLibros = null;
 
         try {
-            result = dt.Buscar(nombreLibro, result);
+            //dt.Conectar();
+            
+            resultListadoNombresLibros = dt.Buscar(nombreLibro, resultListadoNombresLibros);
 
-            while (result.next()) {
-                nombreLibros.addItem(result.getString("Nombre"));
+            while (resultListadoNombresLibros.next()) {
+                nombreLibros.addItem(resultListadoNombresLibros.getString("Nombre"));
             }
+            //resultListadoNombresLibros.close();
+            
+            //dt.Desconectar(resultListadoNombresLibros);
+        } catch (SQLException x) {
+            JOptionPane.showMessageDialog(null, x.getMessage());
+        }
+    }
+    
+    //Método para obtener el ID del libro seleccionado
+    public void IdLibro(){
+        Datos dt = new Datos();
+        
+        String idLibroSeleccionado = ("SELECT ID FROM Libros WHERE Autor = \"" + autor + "\" AND Nombre = \"" + nombre + "\"");
 
+        ResultSet resultIdLibro = null;
+
+        try {
+            //dt.Conectar();
+            
+            resultIdLibro = dt.Buscar(idLibroSeleccionado, resultIdLibro);
+            
+            this.id = resultIdLibro.getInt("ID");
+            
+            //resultIdLibro.close();
+            //dt.Desconectar(resultIdLibro);
+        } catch (SQLException x) {
+            JOptionPane.showMessageDialog(null, x.getMessage());
+        }
+    }
+    
+    //Método para obtener el precio del libro seleccionado
+    public void PrecioLibro(){
+        Datos dt = new Datos();
+        
+        String precioLibroSeleccionado = ("SELECT Precio FROM Libros WHERE Autor = \"" + autor + "\" AND Nombre = \"" + nombre + "\"");
+
+        ResultSet resultPrecioLibro = null;
+
+        try {
+            //dt.Conectar();
+            resultPrecioLibro = dt.Buscar(precioLibroSeleccionado, resultPrecioLibro);
+            
+            this.precio = resultPrecioLibro.getFloat("Precio");
+            
+            //resultPrecioLibro.close();    
+            
+            //dt.Desconectar(resultPrecioLibro);
         } catch (SQLException x) {
             JOptionPane.showMessageDialog(null, x.getMessage());
         }
