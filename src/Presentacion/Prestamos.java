@@ -301,7 +301,6 @@ public class Prestamos extends javax.swing.JFrame {
         
         Prestamo buscar = new Prestamo(idBuscar);
         //buscar.Conectar();//Eliminar
-        //System.out.println("El ID a buscar es: " + idBuscar);
         buscar.Buscar(model2);                                                //Se llama al método Buscar del objeto buscar de la clase Prestamo
         //buscar.Desconectar();//Eliminar
     }//GEN-LAST:event_jTable1MouseClicked
@@ -312,21 +311,11 @@ public class Prestamos extends javax.swing.JFrame {
         int idLectorBuscar = Integer.parseInt(jTable1.getValueAt(filaSeleccionada, 0).toString());
         filaSeleccionada = jTable2.getSelectedRow();
         int idPrestamoBuscar = Integer.parseInt(jTable2.getValueAt(filaSeleccionada, 0).toString());
-        /*
-        System.out.println("El ID Lector a buscar es: " + idLectorBuscar);
-        System.out.println("El ID Prestamo a buscar es: " + idPrestamoBuscar);
-        */
+
         Prestamo buscar = new Prestamo(idPrestamoBuscar, idLectorBuscar);
         //buscar.Conectar();//Eliminar
         buscar.BuscarLibros(model3); 
         //buscar.Desconectar();//Eliminar
-        /*
-        System.out.println("IDLibro1: " + buscar.getIdLibro1());
-        System.out.println("IDLibro2: " + buscar.getIdLibro2());
-        System.out.println("IDLibro3: " + buscar.getIdLibro3());
-        System.out.println("IDLibro4: " + buscar.getIdLibro4());
-        System.out.println("IDLibro5: " + buscar.getIdLibro5());                                              //Se llama al método Buscar del objeto buscar de la clase DetallePrestamo
-        */
         
         Libro libros = new Libro();
         //libros.Conectar();//Eliminar
@@ -405,14 +394,7 @@ public class Prestamos extends javax.swing.JFrame {
             String fechaPrestamoModificar = jTable2.getValueAt(filaSeleccionadaTabla2, 1).toString();
             String fechaDevolucionModificar = jTable2.getValueAt(filaSeleccionadaTabla2, 2).toString();
             int cantidadLibros = Integer.parseInt(jTable2.getValueAt(filaSeleccionadaTabla2, 3).toString());
-            /*
-            float costoTotalModificar = Float.parseFloat(jTable2.getValueAt(filaSeleccionadaTabla2, 4).toString());
-            int idLibro1Modificar = Integer.parseInt(jTable3.getValueAt(libro1, 0).toString());
-            int idLibro2Modificar = Integer.parseInt(jTable3.getValueAt(libro2, 0).toString());
-            int idLibro3Modificar = Integer.parseInt(jTable3.getValueAt(libro3, 0).toString());
-            int idLibro4Modificar = Integer.parseInt(jTable3.getValueAt(libro4, 0).toString());
-            int idLibro5Modificar = Integer.parseInt(jTable3.getValueAt(libro5, 0).toString());
-            */
+
             switch (cantidadLibros) {
                 case 1:
                     autorLibro1Modificar = jTable3.getValueAt(libro1, 2).toString();
@@ -457,133 +439,13 @@ public class Prestamos extends javax.swing.JFrame {
                 default:
                     throw new AssertionError();
             }
-            /*
-            String autorLibro1Modificar = jTable3.getValueAt(libro1, 2).toString();
-            String nombreLibro1Modificar = jTable3.getValueAt(libro1, 1).toString();
-            String autorLibro2Modificar = jTable3.getValueAt(libro2, 2).toString();
-            String nombreLibro2Modificar = jTable3.getValueAt(libro2, 1).toString();
-            String autorLibro3Modificar = jTable3.getValueAt(libro3, 2).toString();
-            String nombreLibro3Modificar = jTable3.getValueAt(libro3, 1).toString();
-            String autorLibro4Modificar = jTable3.getValueAt(libro4, 2).toString();
-            String nombreLibro4Modificar = jTable3.getValueAt(libro4, 1).toString();
-            String autorLibro5Modificar = jTable3.getValueAt(libro5, 2).toString();
-            String nombreLibro5Modificar = jTable3.getValueAt(libro5, 1).toString();
-            */
-            /*
-            float precioLibro1Modificar = Float.parseFloat(jTable3.getValueAt(libro1, 11).toString());
-            float precioLibro2Modificar = Float.parseFloat(jTable3.getValueAt(libro2, 11).toString());
-            float precioLibro3Modificar = Float.parseFloat(jTable3.getValueAt(libro3, 11).toString());
-            float precioLibro4Modificar = Float.parseFloat(jTable3.getValueAt(libro4, 11).toString());
-            float precioLibro5Modificar = Float.parseFloat(jTable3.getValueAt(libro5, 11).toString());
-            */
-            /*
-            System.out.println("idLectorModificar:" + idLectorModificar);
-            System.out.println("nombreLectorModificar:" + nombreLectorModificar);
-            System.out.println("apellidoLectorModificar:" + apellidoLectorModificar);
-            System.out.println("fechaPrestamoModificar:" + fechaPrestamoModificar);
-            System.out.println("fechaDevolucionModificar:" + fechaDevolucionModificar);
-            */
-            /*
-            System.out.println("costoTotalModificar:" + costoTotalModificar);
-            System.out.println("idLibro1Modificar:" + idLibro1Modificar);
-            System.out.println("idLibro2Modificar:" + idLibro2Modificar);
-            System.out.println("idLibro3Modificar:" + idLibro3Modificar);
-            System.out.println("idLibro4Modificar:" + idLibro4Modificar);
-            System.out.println("idLibro5Modificar:" + idLibro5Modificar);
-            */
-            /*
-            System.out.println("nombreLibro1Modificar:" + nombreLibro1Modificar);
-            System.out.println("nombreLibro2Modificar:" + nombreLibro2Modificar);
-            System.out.println("nombreLibro3Modificar:" + nombreLibro3Modificar);
-            System.out.println("nombreLibro4Modificar:" + nombreLibro4Modificar);
-            System.out.println("nombreLibro5Modificar:" + nombreLibro5Modificar);
-            System.out.println("autorLibro1Modificar:" + autorLibro1Modificar);
-            System.out.println("autorLibro2Modificar:" + autorLibro2Modificar);
-            System.out.println("autorLibro3Modificar:" + autorLibro3Modificar);
-            System.out.println("autorLibro4Modificar:" + autorLibro4Modificar);
-            System.out.println("autorLibro5Modificar:" + autorLibro5Modificar);
-            */
-            /*
-            System.out.println("precioLibro1Modificar:" + precioLibro1Modificar);
-            System.out.println("precioLibro2Modificar:" + precioLibro2Modificar);
-            System.out.println("precioLibro3Modificar:" + precioLibro3Modificar);
-            System.out.println("precioLibro4Modificar:" + precioLibro4Modificar);
-            System.out.println("precioLibro5Modificar:" + precioLibro5Modificar);
-            */
             
             modificar.setVisible(true);
-            /*modificar.Cargar(idLectorModificar, nombreLectorModificar, apellidoLectorModificar, fechaPrestamoModificar, fechaDevolucionModificar, 
-                             costoTotalModificar, idLibro1Modificar, idLibro2Modificar, idLibro3Modificar, idLibro4Modificar, idLibro5Modificar, 
-                             nombreLibro1Modificar, nombreLibro2Modificar, nombreLibro3Modificar, nombreLibro4Modificar, nombreLibro5Modificar, 
-                             autorLibro1Modificar, autorLibro2Modificar, autorLibro3Modificar, autorLibro4Modificar, autorLibro5Modificar, 
-                             precioLibro1Modificar, precioLibro2Modificar, precioLibro3Modificar, precioLibro4Modificar, precioLibro5Modificar, 
-                             true);
-            */
             
             modificar.Cargar(idLectorModificar, nombreLectorModificar, apellidoLectorModificar, idPrestamoModificar, fechaPrestamoModificar, 
                             fechaDevolucionModificar, nombreLibro1Modificar, nombreLibro2Modificar, nombreLibro3Modificar, nombreLibro4Modificar, 
                             nombreLibro5Modificar, autorLibro1Modificar, autorLibro2Modificar, autorLibro3Modificar, autorLibro4Modificar, 
                             autorLibro5Modificar, true);
-            /*
-            int idPrestamoBuscar = Integer.parseInt(jTable2.getValueAt(filaSeleccionadaTabla2, 0).toString());
-            
-            
-            System.out.println("El ID Lector a buscar es: " + idLectorModificar);
-            System.out.println("El ID Prestamo a buscar es: " + idPrestamoBuscar);
-            Prestamo buscar = new Prestamo(idPrestamoBuscar, idLectorModificar);
-            buscar.BuscarLibros(model3); 
-            System.out.println("IDLibro1: " + buscar.getIdLibro1());
-            System.out.println("IDLibro2: " + buscar.getIdLibro2());
-            System.out.println("IDLibro3: " + buscar.getIdLibro3());
-            System.out.println("IDLibro4: " + buscar.getIdLibro4());
-            System.out.println("IDLibro5: " + buscar.getIdLibro5());                                              //Se llama al método Buscar del objeto buscar de la clase DetallePrestamo
-            
-            Libro libros = new Libro();
-            libros.BuscarLibros(model3, buscar.getIdLibro1(), buscar.getIdLibro2(), buscar.getIdLibro3(), buscar.getIdLibro4(), buscar.getIdLibro5());
-            */
-            /*    
-            int filaSeleccionada = jTable1.getSelectedRow();
-            int idLectorBuscar = Integer.parseInt(jTable1.getValueAt(filaSeleccionada, 0).toString());
-            filaSeleccionada = jTable2.getSelectedRow();
-            //int idPrestamoBuscar = Integer.parseInt(jTable2.getValueAt(filaSeleccionada, 0).toString());
-
-            System.out.println("El ID Lector a buscar es: " + idLectorBuscar);
-            System.out.println("El ID Prestamo a buscar es: " + idPrestamoBuscar);
-            Prestamo buscar = new Prestamo(idPrestamoBuscar, idLectorBuscar);
-            buscar.BuscarLibros(model3); 
-            System.out.println("IDLibro1: " + buscar.getIdLibro1());
-            System.out.println("IDLibro2: " + buscar.getIdLibro2());
-            System.out.println("IDLibro3: " + buscar.getIdLibro3());
-            System.out.println("IDLibro4: " + buscar.getIdLibro4());
-            System.out.println("IDLibro5: " + buscar.getIdLibro5());                                              //Se llama al método Buscar del objeto buscar de la clase DetallePrestamo
-
-            Libro libros = new Libro();
-            libros.BuscarLibros(model3, buscar.getIdLibro1(), buscar.getIdLibro2(), buscar.getIdLibro3(), buscar.getIdLibro4(), buscar.getIdLibro5());
-            */
-        
-            /*
-            String direccionModificar = jTable1.getValueAt(filaSeleccionada, 5).toString();
-            int localidadModificar = Integer.parseInt(jTable1.getValueAt(filaSeleccionada, 6).toString());
-            int provinciaModificar = Integer.parseInt(jTable1.getValueAt(filaSeleccionada, 7).toString());
-            String telefonoModificar = jTable1.getValueAt(filaSeleccionada, 8).toString();
-            Boolean socioModificar = Boolean.parseBoolean(jTable1.getValueAt(filaSeleccionada, 9).toString());
-            float deudaModificar = Float.parseFloat(jTable1.getValueAt(filaSeleccionada, 10).toString());
-            */
-            /*
-            System.out.println("ID: " + idModificar);
-            System.out.println("Nombre: " + nombreModificar);
-            System.out.println("Apellido: " + apellidoModificar);
-            System.out.println("DNI: " + dniModificar);
-            System.out.println("Fecha Nacimiento: " + fechaNacimientoModificar);
-            System.out.println("Direccion: " + direccionModificar);
-            System.out.println("Localidad: " + localidadModificar);
-            System.out.println("Provincia: " + provinciaModificar);
-            System.out.println("Telefono: " + telefonoModificar);
-            System.out.println("Socio: " + socioModificar);
-            System.out.println("Deuda: " + deudaModificar);
-            */
-            
-            
         }
         else
         {

@@ -22,18 +22,7 @@ public class AgregarPrestamo extends javax.swing.JFrame {
      */
     Libro libros = new Libro();
     FondoPanel fondo = new FondoPanel();
-    /*
-    String autorLibro1Antiguo = "";
-    String autorLibro2Antiguo = "";
-    String autorLibro3Antiguo = "";
-    String autorLibro4Antiguo = "";
-    String autorLibro5Antiguo = "";
-    String nombreLibro1Antiguo = "";
-    String nombreLibro2Antiguo = "";
-    String nombreLibro3Antiguo = "";
-    String nombreLibro4Antiguo = "";
-    String nombreLibro5Antiguo = "";
-    */
+
     public AgregarPrestamo() {
         this.setContentPane(fondo);
         
@@ -556,6 +545,8 @@ public class AgregarPrestamo extends javax.swing.JFrame {
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         // TODO add your handling code here:
+        //Prestamo nuevo = new Prestamo();
+        //nuevo.Conectar();
     }//GEN-LAST:event_formWindowActivated
 
     private void textAutorLibro1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textAutorLibro1ActionPerformed
@@ -799,18 +790,6 @@ public class AgregarPrestamo extends javax.swing.JFrame {
             Logger.getLogger(AgregarPrestamo.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        /*
-        textAutorLibro1.setSelectedItem(autorLibro1Modificar);
-        textNombreLibro1.setSelectedItem(nombreLibro1Modificar);
-        textAutorLibro2.setSelectedItem(autorLibro2Modificar);
-        textNombreLibro2.setSelectedItem(nombreLibro2Modificar);
-        textAutorLibro3.setSelectedItem(autorLibro3Modificar);
-        textNombreLibro3.setSelectedItem(nombreLibro3Modificar);
-        textAutorLibro4.setSelectedItem(autorLibro4Modificar);
-        textNombreLibro4.setSelectedItem(nombreLibro4Modificar);
-        textAutorLibro5.setSelectedItem(autorLibro5Modificar);
-        textNombreLibro5.setSelectedItem(nombreLibro5Modificar);
-        */
         
         if(estado == true){
             botonEstado.setSelected(true);
