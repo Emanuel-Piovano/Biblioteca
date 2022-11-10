@@ -4,17 +4,8 @@ import Negocio.Libro;
 import java.awt.Frame;
 import java.awt.Graphics;
 import java.awt.Image;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
-import java.sql.SQLException;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JOptionPane;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
