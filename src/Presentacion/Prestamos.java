@@ -6,17 +6,8 @@ import Negocio.Prestamo;
 import java.awt.Frame;
 import java.awt.Graphics;
 import java.awt.Image;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
-import java.sql.SQLException;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JOptionPane;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
@@ -266,8 +257,10 @@ public class Prestamos extends javax.swing.JFrame {
         // TODO add your handling code here:
         Lector refrescar = new Lector();                    //Se crea el objeto refrescar correspondiente a la clase Lector
         
+        //refrescar.Conectar();//Eliminar
         refrescar.Refrescar(model1);                         //Se llama al método Refrescar del objeto refrescar de la clase Lector
         textId.setText("");                                 //Borra lo escrito en el buscador por Id
+        //refrescar.Desconectar();//Eliminar
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
@@ -280,6 +273,7 @@ public class Prestamos extends javax.swing.JFrame {
         refrescar1.Refrescar(model1);                         //Se llama al método Refrescar del objeto refrescar de la clase Lector
         refrescar2.Conectar();                               //Se llama al método Conectar perteneciente al objeto refrescar de la clase Libro
         refrescar3.Conectar();                               //Se llama al método Conectar perteneciente al objeto refrescar de la clase Prestamo
+        //refrescar1.Desconectar();//Eliminar
     }//GEN-LAST:event_formWindowOpened
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -295,8 +289,9 @@ public class Prestamos extends javax.swing.JFrame {
         int idBuscar = Integer.parseInt(textId.getText());
         
         Lector buscar = new Lector(idBuscar);
-
+        //buscar.Conectar();//Eliminar
         buscar.Buscar(model1);                                                //Se llama al método Refrescar del objeto dt de la clase Datos
+        //buscar.Desconectar();//Eliminar
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
@@ -305,8 +300,10 @@ public class Prestamos extends javax.swing.JFrame {
         int idBuscar = Integer.parseInt(jTable1.getValueAt(filaSeleccionada, 0).toString());
         
         Prestamo buscar = new Prestamo(idBuscar);
+        //buscar.Conectar();//Eliminar
         //System.out.println("El ID a buscar es: " + idBuscar);
         buscar.Buscar(model2);                                                //Se llama al método Buscar del objeto buscar de la clase Prestamo
+        //buscar.Desconectar();//Eliminar
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked
@@ -320,7 +317,9 @@ public class Prestamos extends javax.swing.JFrame {
         System.out.println("El ID Prestamo a buscar es: " + idPrestamoBuscar);
         */
         Prestamo buscar = new Prestamo(idPrestamoBuscar, idLectorBuscar);
+        //buscar.Conectar();//Eliminar
         buscar.BuscarLibros(model3); 
+        //buscar.Desconectar();//Eliminar
         /*
         System.out.println("IDLibro1: " + buscar.getIdLibro1());
         System.out.println("IDLibro2: " + buscar.getIdLibro2());
@@ -330,13 +329,15 @@ public class Prestamos extends javax.swing.JFrame {
         */
         
         Libro libros = new Libro();
+        //libros.Conectar();//Eliminar
         libros.BuscarLibros(model3, buscar.getIdLibro1(), buscar.getIdLibro2(), buscar.getIdLibro3(), buscar.getIdLibro4(), buscar.getIdLibro5());
+        //buscar.Desconectar();//Eliminar
     }//GEN-LAST:event_jTable2MouseClicked
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
         Prestamo eliminar = new Prestamo();
-        
+        //eliminar.Conectar();//Eliminar
         int filaSeleccionada = jTable2.getSelectedRow();
         
         if(filaSeleccionada >= 0){
@@ -349,6 +350,7 @@ public class Prestamos extends javax.swing.JFrame {
         {
             JOptionPane.showMessageDialog(null, "No se selecciono ninguna fila o no existen datos cargados en la tabla.");
         }
+        //eliminar.Desconectar();//Eliminar
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -362,20 +364,6 @@ public class Prestamos extends javax.swing.JFrame {
             int idModificar = Integer.parseInt(jTable1.getValueAt(filaSeleccionada, 0).toString());
             String nombreModificar = jTable1.getValueAt(filaSeleccionada, 1).toString();
             String apellidoModificar = jTable1.getValueAt(filaSeleccionada, 2).toString();
-            
-            /*
-            System.out.println("ID: " + idModificar);
-            System.out.println("Nombre: " + nombreModificar);
-            System.out.println("Apellido: " + apellidoModificar);
-            System.out.println("DNI: " + dniModificar);
-            System.out.println("Fecha Nacimiento: " + fechaNacimientoModificar);
-            System.out.println("Direccion: " + direccionModificar);
-            System.out.println("Localidad: " + localidadModificar);
-            System.out.println("Provincia: " + provinciaModificar);
-            System.out.println("Telefono: " + telefonoModificar);
-            System.out.println("Socio: " + socioModificar);
-            System.out.println("Deuda: " + deudaModificar);
-            */
             
             obj.setVisible(true);
             obj.Cargar(idModificar, nombreModificar, apellidoModificar);

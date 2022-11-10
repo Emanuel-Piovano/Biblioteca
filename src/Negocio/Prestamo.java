@@ -214,6 +214,15 @@ public class Prestamo {
         dt.Conectar();
     }
     
+    //Método para desconectar a la base de datos
+    public void Desconectar(){
+        Datos dt = new Datos();
+        //ResultSet result = null;
+        
+        //dt.Desconectar(result);
+        dt.Desconectar();
+    }
+    
     //Método para agregar un nuevo lector
     public void Agregar(){
         Datos dt = new Datos();

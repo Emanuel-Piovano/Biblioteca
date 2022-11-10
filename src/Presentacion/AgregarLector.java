@@ -332,6 +332,7 @@ public class AgregarLector extends javax.swing.JFrame {
         textProvincia.setText(String.valueOf(provinciaModificar));
         textTelefono.setText(telefonoModificar);
         textDeuda.setText(String.valueOf(deudaModificar));
+        
         if(socioModificar == true){
             botonSi.setSelected(true);
         }

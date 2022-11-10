@@ -51,7 +51,16 @@ public class Provincia {
 
         dt.Conectar();
     }
-
+    
+    //Método para desconectar a la base de datos
+    public void Desconectar(){
+        Datos dt = new Datos();
+        //ResultSet result = null;
+        
+        //dt.Desconectar(result);
+        dt.Desconectar();
+    }
+    
     //Método para refrescar
     public void Refrescar(DefaultTableModel model){
         Datos dt = new Datos();

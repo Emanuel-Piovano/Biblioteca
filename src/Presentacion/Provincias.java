@@ -1,6 +1,5 @@
 package Presentacion;
 
-import Negocio.Lector;
 import Negocio.Provincia;
 import java.awt.Frame;
 import java.awt.Graphics;
@@ -148,8 +147,10 @@ public class Provincias extends javax.swing.JFrame {
         // TODO add your handling code here:
         Provincia refrescar = new Provincia();                    //Se crea el objeto refrescar correspondiente a la clase Provincia
         
+        refrescar.Conectar();//Eliminar
         refrescar.Refrescar(model);                         //Se llama al método Refrescar del objeto refrescar de la clase Provincia
         textId.setText("");                                 //Borra lo escrito en el buscador por Id
+        refrescar.Desconectar();//Eliminar
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
@@ -158,6 +159,7 @@ public class Provincias extends javax.swing.JFrame {
         
         refrescar.Conectar();                               //Se llama al método Conectar perteneciente al objeto refrescar de la clase Provincia
         refrescar.Refrescar(model);                         //Se llama al método Refrescar del objeto refrescar de la clase Provincia
+        refrescar.Desconectar();//Eliminar
     }//GEN-LAST:event_formWindowOpened
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -173,8 +175,10 @@ public class Provincias extends javax.swing.JFrame {
         int idBuscar = Integer.parseInt(textId.getText());
         
         Provincia buscar = new Provincia(idBuscar);
-
+        
+        buscar.Conectar();//Eliminar
         buscar.Buscar(model);                                                //Se llama al método Refrescar del objeto dt de la clase Datos
+        buscar.Desconectar();//Eliminar
     }//GEN-LAST:event_jButton7ActionPerformed
 
     /**

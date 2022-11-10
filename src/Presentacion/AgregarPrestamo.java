@@ -22,7 +22,18 @@ public class AgregarPrestamo extends javax.swing.JFrame {
      */
     Libro libros = new Libro();
     FondoPanel fondo = new FondoPanel();
-    
+    /*
+    String autorLibro1Antiguo = "";
+    String autorLibro2Antiguo = "";
+    String autorLibro3Antiguo = "";
+    String autorLibro4Antiguo = "";
+    String autorLibro5Antiguo = "";
+    String nombreLibro1Antiguo = "";
+    String nombreLibro2Antiguo = "";
+    String nombreLibro3Antiguo = "";
+    String nombreLibro4Antiguo = "";
+    String nombreLibro5Antiguo = "";
+    */
     public AgregarPrestamo() {
         this.setContentPane(fondo);
         
@@ -461,13 +472,14 @@ public class AgregarPrestamo extends javax.swing.JFrame {
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
         // TODO add your handling code here:
-        //Al oprimir el botón "Salir", nos regresa a la ventana "Lectores"
+        //Al oprimir el botón "Salir", nos regresa a la ventana "Prestamos"
         dispose();
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         Prestamo nuevo = new Prestamo();
+        //nuevo.Conectar();//Eliminar
         int contadorLibros = 0;
         float costoTotal = 0;
         
@@ -539,6 +551,7 @@ public class AgregarPrestamo extends javax.swing.JFrame {
             nuevo.setId(Integer.parseInt(textIdPrestamo.getText()));
             nuevo.Modificar();
         }
+        //nuevo.Desconectar();//Eliminar
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
@@ -547,51 +560,87 @@ public class AgregarPrestamo extends javax.swing.JFrame {
 
     private void textAutorLibro1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textAutorLibro1ActionPerformed
         // TODO add your handling code here:
+        //System.out.println("Autor libro 1: " + textAutorLibro1.getSelectedItem());
         autorLibroListado(textAutorLibro1, textNombreLibro1, textIdLibro1, textPrecioLibro1);
+        /*
+        if(autorLibro1Antiguo.equals(textAutorLibro1.getSelectedItem().toString()))
+        {
+            System.out.println("Verdadero");
+            autorLibroListado(textAutorLibro1, textNombreLibro1, textIdLibro1, textPrecioLibro1);
+            autorLibro1Antiguo = textAutorLibro1.getSelectedItem().toString();
+            System.out.println(autorLibro1Antiguo);
+        }
+        else
+        {
+            System.out.println("Falso");
+        }
+        */
     }//GEN-LAST:event_textAutorLibro1ActionPerformed
 
     private void textNombreLibro1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textNombreLibro1ActionPerformed
         // TODO add your handling code here:
+        //System.out.println("Nombre libro 1: " + textNombreLibro1.getSelectedItem());
         nombreLibroListado(textNombreLibro1, textAutorLibro1, textIdLibro1, textPrecioLibro1);
+        /*
+        if(nombreLibro1Antiguo.equals(textNombreLibro1.getSelectedItem().toString()))
+        {
+            System.out.println("Verdadero");
+            nombreLibroListado(textNombreLibro1, textAutorLibro1, textIdLibro1, textPrecioLibro1);
+            nombreLibro1Antiguo = textNombreLibro1.getSelectedItem().toString();
+            System.out.println(nombreLibro1Antiguo);
+        }
+        else
+        {
+            System.out.println("Falso");
+        }
+        */
     }//GEN-LAST:event_textNombreLibro1ActionPerformed
 
     private void textAutorLibro2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textAutorLibro2ActionPerformed
         // TODO add your handling code here:
+        //System.out.println("Autor libro 2: " + textAutorLibro2.getSelectedItem());
         autorLibroListado(textAutorLibro2, textNombreLibro2, textIdLibro2, textPrecioLibro2);
     }//GEN-LAST:event_textAutorLibro2ActionPerformed
 
     private void textNombreLibro2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textNombreLibro2ActionPerformed
         // TODO add your handling code here:
+        //System.out.println("Nombre libro 2: " + textNombreLibro2.getSelectedItem());
         nombreLibroListado(textNombreLibro2, textAutorLibro2, textIdLibro2, textPrecioLibro2);
     }//GEN-LAST:event_textNombreLibro2ActionPerformed
 
     private void textAutorLibro4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textAutorLibro4ActionPerformed
         // TODO add your handling code here:
+        //System.out.println("Autor libro 4: " + textAutorLibro4.getSelectedItem());
         autorLibroListado(textAutorLibro4, textNombreLibro4, textIdLibro4, textPrecioLibro4);
     }//GEN-LAST:event_textAutorLibro4ActionPerformed
 
     private void textNombreLibro4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textNombreLibro4ActionPerformed
         // TODO add your handling code here:
+        //System.out.println("Nombre libro 4: " + textNombreLibro4.getSelectedItem());
         nombreLibroListado(textNombreLibro4, textAutorLibro4, textIdLibro4, textPrecioLibro4);
     }//GEN-LAST:event_textNombreLibro4ActionPerformed
 
     private void textNombreLibro3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textNombreLibro3ActionPerformed
         // TODO add your handling code here:
+        //System.out.println("Nombre libro 3: " + textNombreLibro3.getSelectedItem());
         nombreLibroListado(textNombreLibro3, textAutorLibro3, textIdLibro3, textPrecioLibro3);
     }//GEN-LAST:event_textNombreLibro3ActionPerformed
 
     private void textAutorLibro3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textAutorLibro3ActionPerformed
         // TODO add your handling code here:
+        //System.out.println("Autor libro 3: " + textAutorLibro3.getSelectedItem());
         autorLibroListado(textAutorLibro3, textNombreLibro3, textIdLibro3, textPrecioLibro3);
     }//GEN-LAST:event_textAutorLibro3ActionPerformed
 
     private void textAutorLibro5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textAutorLibro5ActionPerformed
         // TODO add your handling code here:
+        //System.out.println("Autor libro 5: " + textAutorLibro5.getSelectedItem());
         autorLibroListado(textAutorLibro5, textNombreLibro5, textIdLibro5, textPrecioLibro5);
     }//GEN-LAST:event_textAutorLibro5ActionPerformed
 
     private void textNombreLibro5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textNombreLibro5ActionPerformed
         // TODO add your handling code here:
+        //System.out.println("Nombre libro 5: " + textNombreLibro5.getSelectedItem());
         nombreLibroListado(textNombreLibro5, textAutorLibro5, textIdLibro5, textPrecioLibro5);
     }//GEN-LAST:event_textNombreLibro5ActionPerformed
 
@@ -711,6 +760,16 @@ public class AgregarPrestamo extends javax.swing.JFrame {
         textNombre.setText(nombreModificar);
         textApellido.setText(apellidoModificar);
         textIdPrestamo.setText(String.valueOf(idPrestamoModificar));
+        textAutorLibro1.setSelectedItem(autorLibro1Modificar);
+        textNombreLibro1.setSelectedItem(nombreLibro1Modificar);
+        textAutorLibro2.setSelectedItem(autorLibro2Modificar);
+        textNombreLibro2.setSelectedItem(nombreLibro2Modificar);
+        textAutorLibro3.setSelectedItem(autorLibro3Modificar);
+        textNombreLibro3.setSelectedItem(nombreLibro3Modificar);
+        textAutorLibro4.setSelectedItem(autorLibro4Modificar);
+        textNombreLibro4.setSelectedItem(nombreLibro4Modificar);
+        textAutorLibro5.setSelectedItem(autorLibro5Modificar);
+        textNombreLibro5.setSelectedItem(nombreLibro5Modificar);
         
         //Formato inicial.  
         SimpleDateFormat formato1 = new SimpleDateFormat("yyyy-MM-dd");
@@ -740,6 +799,7 @@ public class AgregarPrestamo extends javax.swing.JFrame {
             Logger.getLogger(AgregarPrestamo.class.getName()).log(Level.SEVERE, null, ex);
         }
         
+        /*
         textAutorLibro1.setSelectedItem(autorLibro1Modificar);
         textNombreLibro1.setSelectedItem(nombreLibro1Modificar);
         textAutorLibro2.setSelectedItem(autorLibro2Modificar);
@@ -750,6 +810,7 @@ public class AgregarPrestamo extends javax.swing.JFrame {
         textNombreLibro4.setSelectedItem(nombreLibro4Modificar);
         textAutorLibro5.setSelectedItem(autorLibro5Modificar);
         textNombreLibro5.setSelectedItem(nombreLibro5Modificar);
+        */
         
         if(estado == true){
             botonEstado.setSelected(true);
@@ -763,7 +824,7 @@ public class AgregarPrestamo extends javax.swing.JFrame {
     private void autorLibroListado(JComboBox AutorLibro, JComboBox NombreLibro, JTextField IdLibro, JTextField PrecioLibro) {                                            
         // TODO add your handling code here:
         float precioLibro1, precioLibro2, precioLibro3, precioLibro4, precioLibro5, precioTotal;
-        
+        //libros.Conectar();//Eliminar
         if(AutorLibro.getSelectedIndex() > -1)
         {
             String autorLibro = AutorLibro.getSelectedItem().toString();
@@ -795,12 +856,13 @@ public class AgregarPrestamo extends javax.swing.JFrame {
                textTotal.setText(String.valueOf(precioTotal)); 
             }    
         }
+        //libros.Desconectar();//Eliminar
     }
         
     private void nombreLibroListado(JComboBox NombreLibro, JComboBox AutorLibro, JTextField IdLibro, JTextField PrecioLibro){
         // TODO add your handling code here:       
         float precioLibro1, precioLibro2, precioLibro3, precioLibro4, precioLibro5, precioTotal;
-        
+        //libros.Conectar();//Eliminar
         if(NombreLibro.getSelectedIndex() > -1)
         {
             String autorLibro = AutorLibro.getSelectedItem().toString();
@@ -835,6 +897,7 @@ public class AgregarPrestamo extends javax.swing.JFrame {
                textTotal.setText(String.valueOf(precioTotal)); 
             }  
         }
+        //libros.Desconectar();//Eliminar
     }
     
     private float costoLibro(JTextField PrecioLibro) {                                            

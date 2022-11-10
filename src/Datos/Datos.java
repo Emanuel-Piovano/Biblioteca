@@ -1,19 +1,12 @@
 package Datos;
 
-import java.awt.Frame;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JOptionPane;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 
 public class Datos {
 
@@ -33,10 +26,19 @@ public class Datos {
             JOptionPane.showMessageDialog(null, x.getMessage());
         }
     }
-    
+    /*
     public void Desconectar(ResultSet resulset) {
         try {
             resulset.close();
+            connect.close();
+
+        } catch (SQLException x) {
+            JOptionPane.showMessageDialog(null, x.getMessage());
+        }
+    }
+    */
+    public void Desconectar() {
+        try {
             connect.close();
 
         } catch (SQLException x) {
